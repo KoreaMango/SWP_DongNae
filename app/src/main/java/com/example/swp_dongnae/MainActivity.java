@@ -47,8 +47,9 @@ public class MainActivity extends AppCompatActivity {
                 }
                 if (throwable != null) {
                     //TBD
+                    Log.w(TAG, "invoke: " + throwable.getLocalizedMessage());
                 }
-                updateKakaoLoginUi();
+                MainActivity.this.updateKakaoLoginUi();
                 return null;
             }
         };
