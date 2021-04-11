@@ -1,20 +1,22 @@
 package com.example.swp_dongnae;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.bumptech.glide.Glide;
 import com.google.android.gms.auth.api.Auth;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
@@ -45,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     private View loginButton, logoutButton;
     private TextView nickName;
     private ImageView profileImage;
+    private Button BtnPopUp;
 
 
     @Override
@@ -100,6 +103,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         logoutButton = findViewById(R.id.logout);
         nickName = findViewById(R.id.nickname);
         profileImage = findViewById(R.id.profile);
+
+        BtnPopUp = (Button)findViewById(R.id.btnPopUp); // 문의하기 버튼 추
 
         GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString((R.string.default_web_client_id)))
@@ -163,6 +168,25 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         });
 
         updateKakaoLoginUi();
+
+        BtnPopUp.setOnClickListener(new View.OnClickListener() { //버튼 클릭시 문의하기 팝업 뜨는 내
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder ad = new AlertDialog.Builder(MainActivity.this);
+                //ad.setIcon();
+                ad.setTitle("개발자 이메일");
+                ad.setMessage("mgo8434kk@gmail.com");
+
+                ad.setNegativeButton("확인", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                ad.show();
+            }
+        });
+
     }
 
     private void updateKakaoLoginUi() {
@@ -201,4 +225,16 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
     }
+
+//    public void CopyText(){ // 클립보드에 붙여넣 TODO clipboard
+//        ClipboardManager clipboardManager;
+//        clipboardManager = (ClipboardManager)getSystemService(CLIPBOARD_SERVICE);
+//
+//        ClipData clipData = ClipData.newPlainText("클립보드라벨명", "복사할 텍스트");
+//
+//        clipboardManager.setPrimaryClip(clipData);
+//        //Toast.makeText(context,"ID가 복사되었습니다.",Toast.LENGTH_SHORT).show();
+//
+//
+//    }
 }
