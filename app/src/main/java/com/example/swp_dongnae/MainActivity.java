@@ -1,5 +1,7 @@
 package com.example.swp_dongnae;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -173,9 +175,17 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder ad = new AlertDialog.Builder(MainActivity.this);
-                //ad.setIcon();
+//                String copy;
+                String DevMail = "mgo8434kk@gmail.com";
                 ad.setTitle("개발자 이메일");
-                ad.setMessage("mgo8434kk@gmail.com");
+                ad.setMessage(DevMail);
+
+//                ad.setNegativeButton("복사", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        copy = DevMail;
+//                    }
+//                });
 
                 ad.setNegativeButton("확인", new DialogInterface.OnClickListener() {
                     @Override
@@ -226,15 +236,15 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
     }
 
-//    public void CopyText(){ // 클립보드에 붙여넣 TODO clipboard
-//        ClipboardManager clipboardManager;
-//        clipboardManager = (ClipboardManager)getSystemService(CLIPBOARD_SERVICE);
-//
-//        ClipData clipData = ClipData.newPlainText("클립보드라벨명", "복사할 텍스트");
-//
-//        clipboardManager.setPrimaryClip(clipData);
-//        //Toast.makeText(context,"ID가 복사되었습니다.",Toast.LENGTH_SHORT).show();
-//
-//
-//    }
+    public void CopyText(String label, String textString){ // 클립보드에 붙여넣 TODO clipboard
+        ClipboardManager clipboardManager; // 클립보드 객체 생성
+        clipboardManager = (ClipboardManager)getSystemService(CLIPBOARD_SERVICE); // 클립보드 객체 초기화
+
+        ClipData clipData = ClipData.newPlainText(label, textString); // 클립데이터 객체 생성 및 객체 데이터 초기화
+
+        clipboardManager.setPrimaryClip(clipData); // 객체 데이터를 객체 보드에 추가
+
+        Toast.makeText(getApplicationContext(),"클립보드에 복사되었습니다.",Toast.LENGTH_SHORT).show(); // 토스트 메세지를 이용해 사용자에게 알림
+
+    }
 }

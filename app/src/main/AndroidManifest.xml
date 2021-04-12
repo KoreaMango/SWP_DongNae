@@ -12,7 +12,10 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.SWP_DongNae">
-        <activity android:name=".ResultActivity"></activity>
+        <activity android:name=".GuideActivity"></activity>
+        <activity android:name=".CategoryActivity" />
+        <activity android:name=".SelectActivity" />
+        <activity android:name=".ResultActivity" />
         <activity
             android:name=".Loading"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
