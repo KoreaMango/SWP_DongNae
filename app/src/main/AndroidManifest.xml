@@ -11,7 +11,7 @@
         android:label="동아리 네트워크"
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
-        android:theme="@style/Theme.SWP_DongNae">
+        android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity android:name=".GuideActivity"></activity>
         <activity android:name=".CategoryActivity" />
         <activity android:name=".SelectActivity" />

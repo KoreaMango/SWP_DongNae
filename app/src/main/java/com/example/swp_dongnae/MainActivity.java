@@ -77,8 +77,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                             intent.putExtra("nickName",account.getDisplayName());
                             intent.putExtra("photoUrl",String.valueOf(account.getPhotoUrl())); //특정 자료형을 스트링 형태로 변환
 
-
-
                             startActivity(intent);
                             btn_google.setVisibility(View.GONE);
                             logoutButton.setVisibility(View.VISIBLE);
@@ -96,7 +94,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
         Intent intent = new Intent(this, Loading.class);
         startActivity(intent);
