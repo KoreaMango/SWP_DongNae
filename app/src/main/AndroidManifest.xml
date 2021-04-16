@@ -13,6 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity android:name=".GuideActivity"></activity>
+        <activity android:name=".ClubNameActivity"></activity>
         <activity android:name=".CategoryActivity" />
         <activity android:name=".SelectActivity" />
         <activity android:name=".ResultActivity" />
