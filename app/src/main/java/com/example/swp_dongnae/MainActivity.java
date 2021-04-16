@@ -16,6 +16,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.auth.api.Auth;
@@ -31,9 +33,16 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.kakao.sdk.auth.model.OAuthToken;
 import com.kakao.sdk.user.UserApiClient;
 import com.kakao.sdk.user.model.User;
+
+import java.util.ArrayList;
 
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
@@ -90,6 +99,15 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                 });
     }
 
+    private RecyclerView recyclerView;
+    private RecyclerView.Adapter adapter;
+    private RecyclerView.LayoutManager layoutManager;
+    private ArrayList<CategoryActivity> arrayList;
+    private FirebaseDatabase database;
+    private DatabaseReference databaseReference;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -103,7 +121,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         nickName = findViewById(R.id.nickname);
         profileImage = findViewById(R.id.profile);
 
-        BtnPopUp = (Button)findViewById(R.id.btnPopUp); // 문의하기 버튼 추
+        BtnPopUp = (Button)findViewById(R.id.btnPopUp); // 문의하기 버튼 추가
 
         GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString((R.string.default_web_client_id)))
@@ -124,6 +142,37 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                 startActivityForResult(intent,REQ_SIGN_GOOGLE);
             }
         });
+
+        recyclerView = findViewById(R.id.recyclerView); //리사이클뷰 아디 연결
+        //recyclerView.setHasFixedSize(true); //리사이클러뷰 성능 강화
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+        arrayList = new ArrayList<>(); // 카테고리 액티비티 클래스의 객체를 담을 어레이 리스트
+
+        database = FirebaseDatabase.getInstance(); //파이어베이스 데이터 베이스 연동
+        databaseReference = database.getReference("CategoryActivity"); //db 테이블 연결
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                //파이어베이스 데이터베이스의 데이터를 받아오는곳
+                arrayList.clear(); //기존 배열리스트 초기화
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()){  //반복문으로 데이터 리스트를 추출
+                    CategoryActivity categoryActivity = snapshot.getValue(CategoryActivity.class); //만들어둔 카테고리 액티비티 객체에 데이터를 담는다
+                    arrayList.add(categoryActivity);
+
+                }
+                adapter.notifyDataSetChanged();//리스트 저장 및 새로고침
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.e("MainActivity", String.valueOf(databaseError.toException()));   //에러문 출력
+            }
+        });
+        adapter =new CustomAdapter(arrayList,this);
+        recyclerView.setAdapter(adapter); //리사이클러뷰에 어댑터 연결
+
 
 
 

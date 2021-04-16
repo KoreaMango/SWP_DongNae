@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity;
 public class SelectActivity extends AppCompatActivity { // 동아리 찾기 or 앱 사용 설명서 선택 액티비
 
     private Button btnSelectClub;
-    private Button btnGuide;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,7 +16,7 @@ public class SelectActivity extends AppCompatActivity { // 동아리 찾기 or �
         setContentView(R.layout.activity_select);
 
         btnSelectClub = (Button)findViewById(R.id.btnSelectClub);
-        btnGuide = (Button)findViewById(R.id.btnGuide);
+        Button btnGuide = (Button) findViewById(R.id.btnGuide);
 
         btnSelectClub.setOnClickListener(new View.OnClickListener() {
             @Override
