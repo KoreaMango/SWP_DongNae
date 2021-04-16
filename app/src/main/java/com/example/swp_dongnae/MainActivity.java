@@ -146,7 +146,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         recyclerView = findViewById(R.id.recyclerView); //리사이클뷰 아디 연결
         //recyclerView.setHasFixedSize(true); //리사이클러뷰 성능 강화
         layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
+        //recyclerView.setLayoutManager(layoutManager);
         arrayList = new ArrayList<>(); // 카테고리 액티비티 클래스의 객체를 담을 어레이 리스트
 
         database = FirebaseDatabase.getInstance(); //파이어베이스 데이터 베이스 연동

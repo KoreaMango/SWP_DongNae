@@ -14,7 +14,7 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
-public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomViweHolder> {
+public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomViewHolder> {
     private ArrayList<CategoryActivity> arrayList;
     private Context context;
 
@@ -26,14 +26,14 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomViwe
 
     @NonNull
     @Override
-    public CustomViweHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public CustomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item,parent,false);
-        CustomViweHolder holder = new CustomViweHolder(view);
+        CustomViewHolder holder = new CustomViewHolder(view);
         return null;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CustomViweHolder holder, int position) {
+    public void onBindViewHolder(@NonNull CustomViewHolder holder, int position) {
         Glide.with(holder.itemView)
                 .load(arrayList.get(position).getProfile())
                 .into(holder.iv_profile);
@@ -51,14 +51,14 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomViwe
         return (arrayList !=null? arrayList.size():0);
     }
 
-    public static class CustomViweHolder extends RecyclerView.ViewHolder {
+    public static class CustomViewHolder extends RecyclerView.ViewHolder {
         ImageView iv_profile;
         TextView tv_id;
         TextView tv_pw;
         TextView tv_userName;
 
 
-        public CustomViweHolder(@NonNull View itemView) {
+        public CustomViewHolder(@NonNull View itemView) {
             super(itemView);
             this.iv_profile = itemView.findViewById(R.id.iv_profile);
             this.tv_id = itemView.findViewById(R.id.tv_id);
