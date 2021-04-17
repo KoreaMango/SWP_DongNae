@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class SelectActivity extends AppCompatActivity { // 동아리 찾기 or 앱 사용 설명서 선택 액티비
 
     private Button btnSelectClub;
+    private Button btnGuide;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
