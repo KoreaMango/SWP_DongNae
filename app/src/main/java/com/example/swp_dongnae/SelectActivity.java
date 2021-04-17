@@ -53,7 +53,7 @@ public class SelectActivity extends AppCompatActivity { // 동아리 찾기 or �
         });
 
 
-    }
+    } // hi
 }
 
 //TODO 설렉트에서 동아리 찾기 누르면 카테고리로 넘어가게 , 사용자 설명서 누르면 가이드 액티비티로
