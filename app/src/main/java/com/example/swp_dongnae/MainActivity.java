@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -16,6 +17,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -28,6 +31,7 @@ import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -48,6 +52,7 @@ import kotlin.jvm.functions.Function1;
 import kotlin.jvm.functions.Function2;
 
 public class MainActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
+
     private SignInButton btn_google; //구글 로그인 버튼
     private FirebaseAuth auth;  //파이어베이스 인증
     private GoogleApiClient googleApiClient; // 구글 클라이언트 API
@@ -115,6 +120,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         Intent intent = new Intent(this, Loading.class);
         startActivity(intent);
 
+
+
         loginButton = findViewById(R.id.login);
         logoutButton = findViewById(R.id.logout);
         nickName = findViewById(R.id.nickname);
@@ -143,13 +150,18 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         });
 
 
+
         Function2<OAuthToken, Throwable, Unit> callback = new Function2<OAuthToken, Throwable, Unit>() {
             @Override
             public Unit invoke(OAuthToken oAuthToken, Throwable throwable) {
                 if (oAuthToken != null) {
+                    Intent intent = new Intent(getApplicationContext(),ResultActivity.class);
+                    startActivity(intent);
                     //TBD
                 }
                 if (throwable != null) {
+                    Intent intent = new Intent(getApplicationContext(),ResultActivity.class);
+                    startActivity(intent);
                     //TBD
                     Log.w(TAG, "invoke: " + throwable.getLocalizedMessage());
                 }
@@ -212,6 +224,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         });
 
     }
+
+
 
     private void updateKakaoLoginUi() {
         UserApiClient.getInstance().me(new Function2<User, Throwable, Unit>() {
