@@ -12,9 +12,11 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".GuideActivity"></activity>
+        <activity android:name=".ClubActivity"></activity>
+        <activity android:name=".GuideActivity" />
         <activity android:name=".ClubNameActivity"></activity>
         <activity android:name=".CategoryActivity" />
+        <activity android:name=".CategorySub" />
         <activity android:name=".SelectActivity" />
         <activity android:name=".ResultActivity" />
         <activity

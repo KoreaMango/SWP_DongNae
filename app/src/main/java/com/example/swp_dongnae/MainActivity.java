@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -16,7 +17,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -29,6 +31,7 @@ import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -49,6 +52,7 @@ import kotlin.jvm.functions.Function1;
 import kotlin.jvm.functions.Function2;
 //sdsadsadasd
 public class MainActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
+
     private SignInButton btn_google; //구글 로그인 버튼
     private FirebaseAuth auth;  //파이어베이스 인증
     private GoogleApiClient googleApiClient; // 구글 클라이언트 API
@@ -102,7 +106,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
-    private ArrayList<CategoryActivity> arrayList;
+    private ArrayList<CategorySub> arrayList;
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
 
@@ -115,6 +119,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
         Intent intent = new Intent(this, Loading.class);
         startActivity(intent);
+
+
 
         loginButton = findViewById(R.id.login);
         logoutButton = findViewById(R.id.logout);
@@ -143,46 +149,19 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             }
         });
 
-        recyclerView = findViewById(R.id.recyclerView); //리사이클뷰 아디 연결
-        //recyclerView.setHasFixedSize(true); //리사이클러뷰 성능 강화
-        layoutManager = new LinearLayoutManager(this);
-        //recyclerView.setLayoutManager(layoutManager);
-        arrayList = new ArrayList<>(); // 카테고리 액티비티 클래스의 객체를 담을 어레이 리스트
-
-        database = FirebaseDatabase.getInstance(); //파이어베이스 데이터 베이스 연동
-        databaseReference = database.getReference("CategoryActivity"); //db 테이블 연결
-        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                //파이어베이스 데이터베이스의 데이터를 받아오는곳
-                arrayList.clear(); //기존 배열리스트 초기화
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()){  //반복문으로 데이터 리스트를 추출
-                    CategoryActivity categoryActivity = snapshot.getValue(CategoryActivity.class); //만들어둔 카테고리 액티비티 객체에 데이터를 담는다
-                    arrayList.add(categoryActivity);
-
-                }
-                adapter.notifyDataSetChanged();//리스트 저장 및 새로고침
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.e("MainActivity", String.valueOf(databaseError.toException()));   //에러문 출력
-            }
-        });
-        adapter =new CustomAdapter(arrayList,this);
-        recyclerView.setAdapter(adapter); //리사이클러뷰에 어댑터 연결
-
-
 
 
         Function2<OAuthToken, Throwable, Unit> callback = new Function2<OAuthToken, Throwable, Unit>() {
             @Override
             public Unit invoke(OAuthToken oAuthToken, Throwable throwable) {
                 if (oAuthToken != null) {
+                    Intent intent = new Intent(getApplicationContext(),ResultActivity.class);
+                    startActivity(intent);
                     //TBD
                 }
                 if (throwable != null) {
+                    Intent intent = new Intent(getApplicationContext(),ResultActivity.class);
+                    startActivity(intent);
                     //TBD
                     Log.w(TAG, "invoke: " + throwable.getLocalizedMessage());
                 }
@@ -221,19 +200,20 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder ad = new AlertDialog.Builder(MainActivity.this);
-//                String copy;
+                final String[] copy = new String[1];
                 String DevMail = "mgo8434kk@gmail.com";
                 ad.setTitle("개발자 이메일");
                 ad.setMessage(DevMail);
 
-//                ad.setNegativeButton("복사", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        copy = DevMail;
-//                    }
-//                });
+                ad.setNegativeButton("복사", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        copy[0] = DevMail;
+                        CopyText("Dev", copy[0]);
+                    }
+                });
 
-                ad.setNegativeButton("확인", new DialogInterface.OnClickListener() {
+                ad.setPositiveButton("확인", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
@@ -244,6 +224,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         });
 
     }
+
+
 
     private void updateKakaoLoginUi() {
         UserApiClient.getInstance().me(new Function2<User, Throwable, Unit>() {

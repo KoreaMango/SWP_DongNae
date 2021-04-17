@@ -15,11 +15,11 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomViewHolder> {
-    private ArrayList<CategoryActivity> arrayList;
+    private ArrayList<CategorySub> arrayList;
     private Context context;
 
 
-    public CustomAdapter(ArrayList<CategoryActivity> arrayList, Context context) {
+    public CustomAdapter(ArrayList<CategorySub> arrayList, Context context) {
         this.arrayList = arrayList;
         this.context = context;
     }

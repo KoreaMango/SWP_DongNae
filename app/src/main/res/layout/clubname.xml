@@ -1,0 +1,25 @@
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/imageView"
+        android:layout_weight="1"
+        >
+    </ImageView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="동아리 이름"
+        android:id="@+id/textView"
+        android:textSize="16dp"
+        android:textColor="#FFFFFF"
+        android:gravity="center"
+        android:layout_weight="1"></TextView>
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="번호 선택"
+        android:layout_weight="1" />
+</LinearLayout>
