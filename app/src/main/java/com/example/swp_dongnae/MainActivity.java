@@ -188,19 +188,20 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder ad = new AlertDialog.Builder(MainActivity.this);
-//                String copy;
+                final String[] copy = new String[1];
                 String DevMail = "mgo8434kk@gmail.com";
                 ad.setTitle("개발자 이메일");
                 ad.setMessage(DevMail);
 
-//                ad.setNegativeButton("복사", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        copy = DevMail;
-//                    }
-//                });
+                ad.setNegativeButton("복사", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        copy[0] = DevMail;
+                        CopyText("Dev", copy[0]);
+                    }
+                });
 
-                ad.setNegativeButton("확인", new DialogInterface.OnClickListener() {
+                ad.setPositiveButton("확인", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
