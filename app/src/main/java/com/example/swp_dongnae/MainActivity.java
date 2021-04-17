@@ -50,7 +50,7 @@ import java.util.ArrayList;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
 import kotlin.jvm.functions.Function2;
-
+//sdsadsadasd
 public class MainActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
 
     private SignInButton btn_google; //구글 로그인 버튼
