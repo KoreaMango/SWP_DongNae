@@ -12,9 +12,9 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".ClubActivity"></activity>
+        <activity android:name=".ClubActivity" />
         <activity android:name=".GuideActivity" />
-        <activity android:name=".ClubNameActivity"></activity>
+        <activity android:name=".ClubNameActivity" />
         <activity android:name=".CategoryActivity" />
         <activity android:name=".CategorySub" />
         <activity android:name=".SelectActivity" />
@@ -24,8 +24,8 @@
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
         <activity android:name=".MainActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" /> //hi
-
+                <action android:name="android.intent.action.MAIN" />
+                //hi
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

@@ -6,7 +6,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -17,8 +16,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -31,16 +28,12 @@ import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.GoogleAuthProvider;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.kakao.sdk.auth.model.OAuthToken;
 import com.kakao.sdk.user.UserApiClient;
 import com.kakao.sdk.user.model.User;
@@ -63,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     private TextView nickName;
     private ImageView profileImage;
     private Button BtnPopUp;
-
+    private Button test; //TODO 민규 전용 테스트 버튼
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -71,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         if(requestCode == REQ_SIGN_GOOGLE) {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
                     if(result.isSuccess()){
-                        GoogleSignInAccount account = result.getSignInAccount();
+                       GoogleSignInAccount account = result.getSignInAccount();
                         resultLogin(account);  //어카운트는 로그인 정보를 담고있음
                     }
         }
@@ -220,6 +213,15 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                     }
                 });
                 ad.show();
+            }
+        });
+        test= (Button) findViewById(R.id.test);
+        test.setOnClickListener(new View.OnClickListener() { //TODO 민규 전용 테스트 버튼
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ClubNameActivity.class);
+                intent.putExtra("bdh","bdh");
+                startActivity(intent);//액티비티 이동
             }
         });
 
