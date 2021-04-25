@@ -1,45 +1,68 @@
 package com.example.swp_dongnae;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.List;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
-public class ClubNameAdapter extends BaseAdapter {
+import com.bumptech.glide.Glide;
 
-    private Context context;
-    private List<ClubNameSub> clubNameSubList;
+import java.util.ArrayList;
 
-    public ClubNameAdapter(Context context, List<ClubNameSub> clubNameSubList){
+public class ClubNameAdapter extends RecyclerView.Adapter<CustomAdapter.CustomViewHolder> {
+    final ArrayList<ClubNameSub> arrayList;
+    final Context context;
+
+
+    public ClubNameAdapter(ArrayList<ClubNameSub> arrayList, Context context) {
+        this.arrayList = arrayList;
         this.context = context;
-        this.clubNameSubList = clubNameSubList;
+    }
+    @NonNull
+    @Override
+    public CustomAdapter.CustomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_club_name_adapter,parent,false);
+        CustomAdapter.CustomViewHolder holder = new CustomAdapter.CustomViewHolder(view);
+        return holder;
     }
 
+    @Override
+    public void onBindViewHolder(@NonNull CustomAdapter.CustomViewHolder holder, int position) {
+        Glide.with(holder.itemView)
+                .load(arrayList.get(position).getProfile())
+                .into(holder.iv_profile);
+        holder.tv_id.setText(arrayList.get(position).getId());
+        holder.tv_pw.setText(arrayList.get(position).getPw());
+        holder.tv_userName.setText(arrayList.get(position).getUserName());
+
+
+
+    }
 
     @Override
-    public int getCount() { return clubNameSubList.size();}
+    public int getItemCount() {
 
-    @Override
-    public Object getItem(int i) { return clubNameSubList.get(i);}
+        return (arrayList !=null? arrayList.size():0);
+    }
 
-    @Override
-    public long getItemId(int i) { return i; }
+    public static class CustomViewHolder extends RecyclerView.ViewHolder {
+        ImageView iv_profile;
+        TextView tv_id;
+        TextView tv_pw;
+        TextView tv_userName;
 
-    @Override
-    public View getView(int i, View convertView, ViewGroup parent) {
-        View v = View.inflate(context,R.layout.activity_club_name_adapter,null);
 
-        ImageView imageView = (ImageView) v.findViewById(R.id.imageView);
-        TextView textView = (TextView) v.findViewById(R.id.textView);
-
-        textView.setText(clubNameSubList.get(i).getTextView());
-        //imageView.(clubNameSubList.get(i).getImageView()); TODO 파이어 베이스에 이미지 값 넣기
-
-        v.setTag(clubNameSubList.get(i).getTextView());
-        return v;
+        public CustomViewHolder(@NonNull View itemView) {
+            super(itemView);
+            this.iv_profile = itemView.findViewById(R.id.iv_profile);
+            this.tv_id = itemView.findViewById(R.id.tv_id);
+            this.tv_pw = itemView.findViewById(R.id.tv_pw);
+            this.tv_userName = itemView.findViewById(R.id.tv_userName);
+        }
     }
 }

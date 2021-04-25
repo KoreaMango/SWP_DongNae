@@ -1,20 +1,43 @@
 package com.example.swp_dongnae;
 
 public class ClubNameSub {
-    String textView;
-    String imageView;
+    private String profile;
+    private String id;
+    private String pw;
+    private String userName;
 
-    public ClubNameSub(String textView, String imageView){
-        this.textView = textView;
-        this.imageView = imageView;
+
+    public ClubNameSub(){}
+
+    public String getProfile() {
+        return profile;
     }
-    public ClubNameSub(String textView){
-        this.textView = textView;
+
+    public void setProfile(String profile) {
+        this.profile = profile;
     }
-    public String getTextView() {return textView;}
-    public void setTextView(String textView) {this.textView = textView;}
-    public String getImageView() {return imageView;}
-    public void setImageView(String imageView) {this.imageView = imageView;}
 
+    public String getId() {
+        return id;
+    }
 
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getPw() {
+        return pw;
+    }
+
+    public void setPw(String pw) {
+        this.pw = pw;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 }
