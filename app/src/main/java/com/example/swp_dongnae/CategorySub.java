@@ -1,11 +1,9 @@
 package com.example.swp_dongnae;
 
-import android.app.Activity;
-
-public class CategorySub extends Activity {
+public class CategorySub {
     private String profile;
     private String id;
-    private int pw;
+    private String pw;
     private String userName;
 
 
@@ -27,11 +25,11 @@ public class CategorySub extends Activity {
         this.id = id;
     }
 
-    public int getPw() {
+    public String getPw() {
         return pw;
     }
 
-    public void setPw(int pw) {
+    public void setPw(String pw) {
         this.pw = pw;
     }
 

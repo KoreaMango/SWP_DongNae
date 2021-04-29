@@ -23,6 +23,7 @@ public class ClubNameAdapter extends RecyclerView.Adapter<CustomAdapter.CustomVi
         this.arrayList = arrayList;
         this.context = context;
     }
+
     @NonNull
     @Override
     public CustomAdapter.CustomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -67,6 +68,7 @@ public class ClubNameAdapter extends RecyclerView.Adapter<CustomAdapter.CustomVi
     }
 
 
+    //public interface TODO interface
     public class ViewHolder extends RecyclerView.ViewHolder {
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
