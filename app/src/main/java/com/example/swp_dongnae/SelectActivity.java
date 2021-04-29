@@ -18,21 +18,8 @@ public class SelectActivity extends AppCompatActivity { // 동아리 찾기 or �
         setContentView(R.layout.activity_select);
 
         btnSelectClub = (Button) findViewById(R.id.btnSelectClub);
-        Button btnGuide = (Button) findViewById(R.id.btnGuide);
+        btnGuide = (Button) findViewById(R.id.btnGuide);
 
-        btnSelectClub.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
-        btnGuide.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
         btnSelectClub = findViewById(R.id.btnSelectClub);
         btnSelectClub.setOnClickListener(new View.OnClickListener() {
             @Override
