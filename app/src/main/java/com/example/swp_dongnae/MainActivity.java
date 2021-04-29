@@ -53,10 +53,12 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
     private static final String TAG = "MainActivity";
     private View loginButton, logoutButton;
+    private  ImageView profile;
     private TextView nickName;
     private ImageView profileImage;
     private Button BtnPopUp;
     private Button btn_next;
+    private ImageView loginLogo;
     private Button test;//TODO 민규 전용 테스트 버튼
 
     @Override
@@ -118,9 +120,11 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
         loginButton = findViewById(R.id.login);
         logoutButton = findViewById(R.id.logout);
+        profile = findViewById(R.id.profile);
         nickName = findViewById(R.id.nickname);
         profileImage = findViewById(R.id.profile);
         btn_next = findViewById(R.id.btn_next);
+        loginLogo = findViewById(R.id.loginLogo);
         BtnPopUp = (Button)findViewById(R.id.btnPopUp); // 문의하기 버튼 추가
 
         btn_next.setOnClickListener(new View.OnClickListener() {
@@ -257,7 +261,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                     BtnPopUp.setVisibility(View.GONE);
                     test.setVisibility(View.GONE);
                     btn_next.setVisibility(View.VISIBLE);
-
+                    loginLogo.setVisibility(View.GONE);
+                    profile.setVisibility(View.VISIBLE);
 
                 } else {
                     nickName.setText(null);
@@ -268,7 +273,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                     BtnPopUp.setVisibility(View.VISIBLE);
                     test.setVisibility(View.VISIBLE);
                     btn_next.setVisibility(View.GONE);
-
+                    loginLogo.setVisibility(View.VISIBLE);
+                    profile.setVisibility(View.GONE);
                 }
                 return null;
             }
