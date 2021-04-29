@@ -19,12 +19,16 @@
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/navi1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="66dp"
             android:layout_gravity="bottom"
             android:background="@drawable/border"
             app:itemIconTint="#000000"
             app:itemTextColor="#000000"
-            app:menu="@menu/bottom_menu" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="parent"
+            app:menu="@menu/bottom_menu"
+            tools:layout_editor_absoluteX="16dp" />
     </LinearLayout>
 
 </androidx.drawerlayout.widget.DrawerLayout>

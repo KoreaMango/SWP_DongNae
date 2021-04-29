@@ -2,8 +2,8 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">#ffffff</item> <!-- 액션바 배경색 변경-->
-        <item name="colorPrimaryDark">#ffffff</item> <!-- 상단바 배경색 변경-->
+        <item name="colorPrimary">#ffffff</item>
+        <item name="colorPrimaryDark">#ffffff</item>
         <item name="colorAccent">@color/colorAccent</item>
 
         <item name="windowActionBar">false</item> <!-- 상단바제거 -->
@@ -11,3 +11,4 @@
     </style>
 
 </resources>
+

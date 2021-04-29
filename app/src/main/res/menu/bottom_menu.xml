@@ -3,21 +3,29 @@
     <item
         android:id="@+id/info1"
         android:enabled="true"
-        android:title="정보" />
+        android:title="정보"
+        android:icon="@color/white"
+        android:visible="true"/>
 
     <item
         android:id="@+id/info2"
         android:enabled="true"
-        android:title="활동" />
+        android:title="활동"
+        android:icon="@color/white"
+        android:visible="true"/>
 
     <item
         android:id="@+id/info3"
         android:enabled="true"
-        android:title="협업" />
+        android:title="협업"
+        android:icon="@color/white"
+        android:visible="true"/>
 
     <item
         android:id="@+id/info4"
         android:enabled="true"
-        android:title="QnA" />
+        android:title="QnA"
+        android:icon="@color/white"
+        android:visible="true"/>
 
 </menu>

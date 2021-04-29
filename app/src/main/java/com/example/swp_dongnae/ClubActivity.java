@@ -50,8 +50,6 @@ public class ClubActivity extends AppCompatActivity {
         frag3 = new Frag3();
         frag4 = new Frag4();
         setFrag(0); // 정보탭 지정
-
-
     }
     //하단바
     private void setFrag(int n) {

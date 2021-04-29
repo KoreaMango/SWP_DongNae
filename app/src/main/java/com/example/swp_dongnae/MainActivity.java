@@ -56,7 +56,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     private TextView nickName;
     private ImageView profileImage;
     private Button BtnPopUp;
-    private Button test; //TODO 민규 전용 테스트 버튼
+    private Button btn_next;
+    private Button test;//TODO 민규 전용 테스트 버튼
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -119,8 +120,17 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         logoutButton = findViewById(R.id.logout);
         nickName = findViewById(R.id.nickname);
         profileImage = findViewById(R.id.profile);
-
+        btn_next = findViewById(R.id.btn_next);
         BtnPopUp = (Button)findViewById(R.id.btnPopUp); // 문의하기 버튼 추가
+
+        btn_next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this,SelectActivity.class);
+                startActivity(intent);//액티비티 이동
+
+            }
+        });
 
         GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString((R.string.default_web_client_id)))
@@ -148,13 +158,9 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             @Override
             public Unit invoke(OAuthToken oAuthToken, Throwable throwable) {
                 if (oAuthToken != null) {
-                    Intent intent = new Intent(getApplicationContext(),ResultActivity.class);
-                    startActivity(intent);
                     //TBD
                 }
                 if (throwable != null) {
-                    Intent intent = new Intent(getApplicationContext(),ResultActivity.class);
-                    startActivity(intent);
                     //TBD
                     Log.w(TAG, "invoke: " + throwable.getLocalizedMessage());
                 }
@@ -248,12 +254,20 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                     loginButton.setVisibility(View.GONE);
                     logoutButton.setVisibility(View.VISIBLE);
                     btn_google.setVisibility(View.GONE);
+                    BtnPopUp.setVisibility(View.GONE);
+                    test.setVisibility(View.GONE);
+                    btn_next.setVisibility(View.VISIBLE);
+
+
                 } else {
                     nickName.setText(null);
                     profileImage.setImageBitmap(null);
                     loginButton.setVisibility((View.VISIBLE));
                     logoutButton.setVisibility(View.GONE);
                     btn_google.setVisibility(View.VISIBLE);
+                    BtnPopUp.setVisibility(View.VISIBLE);
+                    test.setVisibility(View.VISIBLE);
+                    btn_next.setVisibility(View.GONE);
 
                 }
                 return null;
