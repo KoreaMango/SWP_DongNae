@@ -1,11 +1,8 @@
 package com.example.swp_dongnae;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,8 +16,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 public class ClubNameActivity extends AppCompatActivity {
 
@@ -68,4 +63,5 @@ public class ClubNameActivity extends AppCompatActivity {
         adapter =new ClubNameAdapter(arrayList,this);
         recyclerView.setAdapter(adapter); //리사이클러뷰에 어댑터 연결
     }
+
 }

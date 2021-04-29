@@ -65,4 +65,24 @@ public class ClubNameAdapter extends RecyclerView.Adapter<CustomAdapter.CustomVi
             this.tv_userName = itemView.findViewById(R.id.tv_userName);
         }
     }
+
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int pos = getAdapterPosition();
+                    if (pos != RecyclerView.NO_POSITION) {
+                        // 데이터 리스트로부터 아이템 데이터 참조.
+                        ClubNameSub item = arrayList.get(pos);
+
+                        // TODO : use item.
+                    }
+                }
+            });
+        }
+    }
 }
