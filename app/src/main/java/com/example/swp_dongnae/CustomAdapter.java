@@ -15,8 +15,8 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomViewHolder> {
-    private ArrayList<CategorySub> arrayList;
-    private Context context;
+    final ArrayList<CategorySub> arrayList;
+    final Context context;
 
 
     public CustomAdapter(ArrayList<CategorySub> arrayList, Context context) {
@@ -26,10 +26,10 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
 
     @NonNull
     @Override
-    public CustomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public CustomAdapter.CustomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item,parent,false);
-        CustomViewHolder holder = new CustomViewHolder(view);
-        return null;
+        CustomAdapter.CustomViewHolder holder = new CustomAdapter.CustomViewHolder(view);
+        return holder;
     }
 
     @Override
@@ -38,7 +38,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
                 .load(arrayList.get(position).getProfile())
                 .into(holder.iv_profile);
         holder.tv_id.setText(arrayList.get(position).getId());
-        holder.tv_pw.setText(String.valueOf(arrayList.get(position).getPw()));
+        holder.tv_pw.setText(arrayList.get(position).getPw());
         holder.tv_userName.setText(arrayList.get(position).getUserName());
 
 

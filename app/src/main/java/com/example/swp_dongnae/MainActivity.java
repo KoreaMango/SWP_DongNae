@@ -219,7 +219,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         test.setOnClickListener(new View.OnClickListener() { //TODO 민규 전용 테스트 버튼
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ClubNameActivity.class);
+                Intent intent = new Intent(MainActivity.this, CategoryActivity.class);
                 intent.putExtra("bdh","bdh");
                 startActivity(intent);//액티비티 이동
             }

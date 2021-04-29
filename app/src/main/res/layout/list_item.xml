@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:background="@color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:background="@drawable/border_thin">
         <ImageView
-            android:id="@+id/tv_profile"
+            android:id="@+id/iv_profile"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_margin="5dp"
@@ -26,6 +28,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
+                android:textColor="#000000"
                 android:text="아이디" />
 
             <TextView
@@ -33,6 +36,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
+                android:textColor="#000000"
                 android:text="비밀번호" />
 
             <TextView
@@ -40,6 +44,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
+                android:textColor="#000000"
                 android:text="백대홍" />
 
         </LinearLayout>

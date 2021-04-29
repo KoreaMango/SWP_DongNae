@@ -16,7 +16,6 @@
         <activity android:name=".GuideActivity" />
         <activity android:name=".ClubNameActivity" />
         <activity android:name=".CategoryActivity" />
-        <activity android:name=".CategorySub" />
         <activity android:name=".SelectActivity" />
         <activity android:name=".ResultActivity" />
         <activity
