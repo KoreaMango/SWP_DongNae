@@ -9,24 +9,18 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
-public class Frag1 extends Fragment {
-
-    private FirebaseDatabase firebaseDatabase;
-    private DatabaseReference databaseReference;
-    private ChildEventListener childEventListener;
-
-
+public class Info extends Fragment {
     private View view;
+
+    public static Info newinstance() {
+        Info infoinfo = new Info();
+        return infoinfo;
+    }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.frag1, container,false);
-
+        view = inflater.inflate(R.layout.info, container, false);
         return view;
     }
 }
