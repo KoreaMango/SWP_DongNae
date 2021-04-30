@@ -1,3 +1,4 @@
+//지울거
 package com.example.swp_dongnae;
 
 import androidx.annotation.NonNull;
