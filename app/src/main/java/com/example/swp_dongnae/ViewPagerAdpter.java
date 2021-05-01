@@ -32,7 +32,9 @@ public class ViewPagerAdpter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
+
         return 4;
+
     }
 
     // 상단의 탭 레이아웃 인디케이터 통해 텍스트 선언해주는 곳
