@@ -17,6 +17,7 @@ import java.util.ArrayList;
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomViewHolder> {
     final ArrayList<CategorySub> arrayList;
     final Context context;
+    OnCategoryItemClickListener listener;
 
 
     public CustomAdapter(ArrayList<CategorySub> arrayList, Context context) {
@@ -28,7 +29,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
     @Override
     public CustomAdapter.CustomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item,parent,false);
-        CustomAdapter.CustomViewHolder holder = new CustomAdapter.CustomViewHolder(view);
+        CustomAdapter.CustomViewHolder holder = new CustomAdapter.CustomViewHolder(view,this.listener);
         return holder;
     }
 
@@ -50,7 +51,14 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
 
         return (arrayList !=null? arrayList.size():0);
     }
-
+    public void setOnItemClickListener(OnCategoryItemClickListener listener) {
+        this.listener = listener;
+    }
+    public void onItemClick(CustomViewHolder holder, View view, int position) {
+        if (listener != null) {
+            listener.onItemClick(holder, view, position);
+        }
+    }
     public static class CustomViewHolder extends RecyclerView.ViewHolder {
         ImageView iv_profile;
         TextView tv_id;
@@ -58,12 +66,46 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
         TextView tv_userName;
 
 
-        public CustomViewHolder(@NonNull View itemView) {
+        public CustomViewHolder(@NonNull View itemView, final OnCategoryItemClickListener listener) {
             super(itemView);
             this.iv_profile = itemView.findViewById(R.id.iv_profile);
             this.tv_id = itemView.findViewById(R.id.tv_id);
             this.tv_pw = itemView.findViewById(R.id.tv_pw);
             this.tv_userName = itemView.findViewById(R.id.tv_userName);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    if (listener != null) {
+                        listener.onItemClick(CustomViewHolder.this, v, position);
+                    }
+
+                }
+            });
         }
+
+//        public void setItem(Person item) {
+//            nameText.setText(item.getName());
+//            mobileText.setText(item.getMobile());
+//        }
     }
+
+//    public void addItem(Person item) {
+//        items.add(item);
+//    }
+//
+//    public void setItems(ArrayList<Person> items) {
+//        this.items = items;
+//    }
+
+    public CategorySub getItem(int position) {
+        return arrayList.get(position);
+    }
+
+//    public void setItem(int position, Person item) {
+//        items.set(position, item);
+//    }
+
+
 }

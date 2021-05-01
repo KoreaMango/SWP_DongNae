@@ -1,5 +1,6 @@
 package com.example.swp_dongnae;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -20,7 +21,7 @@ import java.util.ArrayList;
 public class ClubNameActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    private RecyclerView.Adapter adapter;
+    private ClubNameAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private ArrayList<ClubNameSub> arrayList;
     private FirebaseDatabase database;
@@ -46,7 +47,7 @@ public class ClubNameActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 //파이어베이스 데이터베이스의 데이터를 받아오는곳
                 arrayList.clear(); //기존 배열리스트 초기화
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()){  //반복문으로 데이터 리스트를 추출
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {  //반복문으로 데이터 리스트를 추출
                     ClubNameSub clubNameSub = snapshot.getValue(ClubNameSub.class); //만들어둔 카테고리 액티비티 객체에 데이터를 담는다
                     arrayList.add(clubNameSub);
 
@@ -60,8 +61,19 @@ public class ClubNameActivity extends AppCompatActivity {
                 Log.e("MainActivity", String.valueOf(databaseError.toException()));   //에러문 출력
             }
         });
-        adapter =new ClubNameAdapter(arrayList,this);
+
+        adapter = new ClubNameAdapter(arrayList, this);
         recyclerView.setAdapter(adapter); //리사이클러뷰에 어댑터 연결
+        adapter.setOnItemClickListener(new OnNameItemClickListener() {
+            @Override
+            public void onItemClick(ClubNameAdapter.ClubNameViewHolder holder, View view, int position) {
+                ClubNameSub item = adapter.getItem(position);
+                Intent intent = new Intent(ClubNameActivity.this, ViewClub.class);
+                intent.putExtra("bdh","bdh");
+                startActivity(intent);//액티비티 이동
+            }
+        });
+
     }
 
 }

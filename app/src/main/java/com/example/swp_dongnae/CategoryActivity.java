@@ -1,12 +1,14 @@
 package com.example.swp_dongnae;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.os.Bundle;
-import android.util.Log;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -19,7 +21,7 @@ import java.util.ArrayList;
 public class CategoryActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    private RecyclerView.Adapter adapter;
+    private CustomAdapter adapter; // 클럽네임과 상이함
     private RecyclerView.LayoutManager layoutManager;
     private ArrayList<CategorySub> arrayList;
     private FirebaseDatabase database;
@@ -45,7 +47,7 @@ public class CategoryActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 //파이어베이스 데이터베이스의 데이터를 받아오는곳
                 arrayList.clear(); //기존 배열리스트 초기화
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()){  //반복문으로 데이터 리스트를 추출
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {  //반복문으로 데이터 리스트를 추출
                     CategorySub categorySub = snapshot.getValue(CategorySub.class); //만들어둔 카테고리 액티비티 객체에 데이터를 담는다
                     arrayList.add(categorySub);
 
@@ -59,7 +61,17 @@ public class CategoryActivity extends AppCompatActivity {
                 Log.e("MainActivity", String.valueOf(databaseError.toException()));   //에러문 출력
             }
         });
-             adapter =new CustomAdapter(arrayList,this);
-             recyclerView.setAdapter(adapter); //리사이클러뷰에 어댑터 연결
+        adapter = new CustomAdapter(arrayList, this);
+        recyclerView.setAdapter(adapter); //리사이클러뷰에 어댑터 연결
+        adapter.setOnItemClickListener(new OnCategoryItemClickListener() {
+            @Override
+            public void onItemClick(CustomAdapter.CustomViewHolder holder, View view, int position) {
+                CategorySub item = adapter.getItem(position);
+                Intent intent = new Intent(CategoryActivity.this, ClubNameActivity.class);
+                intent.putExtra("bdh","bdh");
+                startActivity(intent);//액티비티 이동
+            }
+        });
+
     }
 }
