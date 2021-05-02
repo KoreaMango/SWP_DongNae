@@ -10,9 +10,12 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInApi;
 
 public class ResultActivity extends AppCompatActivity {
     private Button btn_continue;
+    private Button logout_g;
     private TextView tv_result;
     private ImageView iv_profile;
    
@@ -32,6 +35,15 @@ public class ResultActivity extends AppCompatActivity {
         iv_profile= findViewById(R.id.iv_profile);
         Glide.with(this).load(photoUrl).into(iv_profile);
 
+        logout_g = findViewById(R.id.logout_g);
+        logout_g.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent2 = new Intent(getApplicationContext(),MainActivity.class);
+                startActivityForResult(intent2,101);
+
+            }
+        });
 
         btn_continue = findViewById(R.id.btn_continue);
         btn_continue.setOnClickListener(new View.OnClickListener() {

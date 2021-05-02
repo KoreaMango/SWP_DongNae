@@ -105,6 +105,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     private ArrayList<CategorySub> arrayList;
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
+    int intro = 0; // 로딩화면 한번만
 
 
 
@@ -115,7 +116,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
         Intent intent = new Intent(this, Loading.class);
         startActivity(intent);
-
 
 
         loginButton = findViewById(R.id.login);
