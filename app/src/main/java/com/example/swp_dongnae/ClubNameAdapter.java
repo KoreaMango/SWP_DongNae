@@ -95,8 +95,6 @@ public class ClubNameAdapter extends RecyclerView.Adapter<ClubNameAdapter.ClubNa
 
     }
 
-
-
 //    public void addItem(Person item) {
 //        items.add(item);
 //    }

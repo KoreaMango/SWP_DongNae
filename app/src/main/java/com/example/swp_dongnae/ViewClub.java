@@ -1,10 +1,10 @@
 package com.example.swp_dongnae;
 
+import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
-
-import android.os.Bundle;
 
 import com.google.android.material.tabs.TabLayout;
 
@@ -18,7 +18,7 @@ public class ViewClub extends AppCompatActivity {
 
         //뷰페이저 세팅
         ViewPager viewPager = findViewById(R.id.vp);
-        fragmentPagerAdapter = new ViewPagerAdpter(getSupportFragmentManager());
+        fragmentPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
 
         TabLayout tabLayout = findViewById(R.id.tab_layout);
         viewPager.setAdapter(fragmentPagerAdapter);

@@ -7,6 +7,7 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -62,13 +63,19 @@ public class CategoryActivity extends AppCompatActivity {
             }
         });
         adapter = new CustomAdapter(arrayList, this);
+        recyclerView.setLayoutManager(new GridLayoutManager(this,2));
         recyclerView.setAdapter(adapter); //리사이클러뷰에 어댑터 연결
         adapter.setOnItemClickListener(new OnCategoryItemClickListener() {
             @Override
             public void onItemClick(CustomAdapter.CustomViewHolder holder, View view, int position) {
                 CategorySub item = adapter.getItem(position);
+
+                int itemPosition = recyclerView.getChildAdapterPosition(view);
+                String index = String.valueOf(itemPosition + 1);
+
                 Intent intent = new Intent(CategoryActivity.this, ClubNameActivity.class);
-                intent.putExtra("bdh","bdh");
+                intent.putExtra("pos","CategoryActivity_" + index);
+                Log.v("01077368247",index);
                 startActivity(intent);//액티비티 이동
             }
         });

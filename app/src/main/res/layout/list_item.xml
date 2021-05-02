@@ -1,54 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@color/white">
+    android:paddingLeft="10dp"
+    android:paddingTop="20dp"
+    android:paddingRight="10dp"
+    android:paddingBottom="20dp"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="@drawable/border_thin">
-        <ImageView
-            android:id="@+id/iv_profile"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_margin="5dp"
-            android:src="@drawable/abc_vector_test"/>
+        android:background="@drawable/border_thin"
+        android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/tv_id"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tv_id"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:textColor="#000000"
-                android:text="아이디" />
-
-            <TextView
-                android:id="@+id/tv_pw"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:textColor="#000000"
-                android:text="비밀번호" />
-
-            <TextView
-                android:id="@+id/tv_userName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:textColor="#000000"
-                android:text="백대홍" />
-
-        </LinearLayout>
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="30dp"
+            android:layout_gravity="center"
+            android:text="백대홍"
+            android:textColor="#000000"
+            android:textSize="20dp" />
 
     </LinearLayout>
 
-</LinearLayout>
+</RelativeLayout>
