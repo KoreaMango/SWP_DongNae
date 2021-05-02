@@ -46,7 +46,7 @@ public class ClubNameActivity extends AppCompatActivity {
 
         database = FirebaseDatabase.getInstance(); //파이어베이스 데이터 베이스 연동
 
-        databaseReference = database.getReference("CategoryActivity"); //db 테이블 연결화
+        databaseReference = database.getReference("동아리"); //db 테이블 연결화
 
 
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -56,8 +56,8 @@ public class ClubNameActivity extends AppCompatActivity {
                 arrayList.clear(); //기존 배열리스트 초기화
                 Intent intent = getIntent();
                 String pos = intent.getStringExtra("pos");
-
                 v_categoryName = dataSnapshot.child(pos).child("id").getValue().toString();
+                Log.v("01077368247", v_categoryName);
                 categoryName.setText(v_categoryName);
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {  //반복문으로 데이터 리스트를 추출
                     ClubNameSub clubNameSub = snapshot.getValue(ClubNameSub.class); //만들어둔 카테고리 액티비티 객체에 데이터를 담는다
