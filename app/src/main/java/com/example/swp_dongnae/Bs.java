@@ -8,7 +8,14 @@ public class Bs {
     private String email;
     private String tel;
 
-    public Bs() {}
+    public Bs(String activity, String purpose, String captain, String category, String email, String tel) {
+        this.activity = activity;
+        this.purpose = purpose;
+        this.captain = captain;
+        this.category = category;
+        this.email = email;
+        this.tel = tel;
+    }
 
     public String getActivity() {
         return activity;
