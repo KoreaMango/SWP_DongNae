@@ -45,7 +45,6 @@ public class ClubNameActivity extends AppCompatActivity {
         arrayList = new ArrayList<>(); // 카테고리 액티비티 클래스의 객체를 담을 어레이 리스트
 
         database = FirebaseDatabase.getInstance(); //파이어베이스 데이터 베이스 연동
-
         databaseReference = database.getReference("동아리"); //db 테이블 연결화
 
 
