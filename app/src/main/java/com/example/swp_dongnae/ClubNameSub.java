@@ -3,8 +3,6 @@ package com.example.swp_dongnae;
 public class ClubNameSub {
     private String profile;
     private String id;
-    private String pw;
-    private String userName;
 
 
     public ClubNameSub(){}
@@ -25,19 +23,5 @@ public class ClubNameSub {
         this.id = id;
     }
 
-    public String getPw() {
-        return pw;
-    }
 
-    public void setPw(String pw) {
-        this.pw = pw;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
 }

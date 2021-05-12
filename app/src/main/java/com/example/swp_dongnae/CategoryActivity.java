@@ -68,10 +68,10 @@ public class CategoryActivity extends AppCompatActivity {
         adapter.setOnItemClickListener(new OnCategoryItemClickListener() {
             @Override
             public void onItemClick(CustomAdapter.CustomViewHolder holder, View view, int position) {
-                CategorySub item = adapter.getItem(position);
-
+                //CategorySub item = adapter.getItem(position);
                 int itemPosition = recyclerView.getChildAdapterPosition(view);
                 String index;
+
                 SwitchTool switchTool = new SwitchTool();
                 index = switchTool.switchClub(itemPosition);
                 Intent intent = new Intent(CategoryActivity.this, ClubNameActivity.class);
