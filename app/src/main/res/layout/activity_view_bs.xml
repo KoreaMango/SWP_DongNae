@@ -23,7 +23,7 @@
             android:paddingBottom="13dp"
             android:background="@drawable/border_second"
             android:gravity="center_horizontal"
-            android:text="동아리 이름"
+            android:text="기라성"
             android:textColor="@color/black"
             android:textSize="25dp"
             app:layout_constraintEnd_toEndOf="parent"
