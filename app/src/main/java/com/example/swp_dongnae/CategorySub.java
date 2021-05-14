@@ -4,7 +4,8 @@ public class CategorySub {
     private String id;
 
 
-    public CategorySub(){}
+    public CategorySub(){
+    }
 
     public String getId() {
         return id;

@@ -2,7 +2,6 @@ package com.example.swp_dongnae;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,23 +47,23 @@ public class Work extends Fragment {
         database = FirebaseDatabase.getInstance(); //파이어베이스 데이터 베이스 연동
         databaseReference = database.getReference("동아리"); //db 테이블 연결화
 
-        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+        databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                //파이어베이스 데이터베이스의 데이터를 받아오는곳
-                arrayList.clear(); //기존 배열리스트 초기화
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {  //반복문으로 데이터 리스트를 추출
-                    NoticeSub noticeSub = snapshot.getValue(NoticeSub.class); //만들어둔 카테고리 액티비티 객체에 데이터를 담는다
-                    arrayList.add(noticeSub);
-
-                }
-                adapter.notifyDataSetChanged();//리스트 저장 및 새로고침
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                arrayList.clear(); //기존 배열리스트 초기화
+//                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {  //반복문으로 데이터 리스트를 추출
+//                    NoticeSub noticeSub = new NoticeSub();
+//                    noticeSub.setId(dataSnapshot.child("id").getValue().toString()); //만들어둔 카테고리 액티비티 객체에 데이터를 담는다
+//                    arrayList.add(noticeSub); //TODO 인텐트 클릭으로 동아리 이름을 넘겨주고 동아리 이름 동선을 넣어주면 된다.
+//
+//                }
+//                adapter.notifyDataSetChanged();//리스트 저장 및 새로고침
 
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.e("MainActivity", String.valueOf(databaseError.toException()));   //에러문 출력
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
 

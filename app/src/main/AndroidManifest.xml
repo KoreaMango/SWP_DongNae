@@ -12,8 +12,7 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".DetailActivity"></activity>
-        <activity android:name=".NoticeAdapter" />
+        <activity android:name=".DetailActivity" />
         <activity android:name=".ViewClub" />
         <activity android:name=".GuideActivity" />
         <activity android:name=".ClubNameActivity" />

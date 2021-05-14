@@ -52,14 +52,14 @@ public class QnA extends Fragment {
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                //파이어베이스 데이터베이스의 데이터를 받아오는곳
-                arrayList.clear(); //기존 배열리스트 초기화
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {  //반복문으로 데이터 리스트를 추출
-                    NoticeSub noticeSub = snapshot.getValue(NoticeSub.class); //만들어둔 카테고리 액티비티 객체에 데이터를 담는다
-                    arrayList.add(noticeSub);
-
-                }
-                adapter.notifyDataSetChanged();//리스트 저장 및 새로고침
+//                //파이어베이스 데이터베이스의 데이터를 받아오는곳
+//                arrayList.clear(); //기존 배열리스트 초기화
+//                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {  //반복문으로 데이터 리스트를 추출
+//                    NoticeSub noticeSub = snapshot.getValue(NoticeSub.class); //만들어둔 카테고리 액티비티 객체에 데이터를 담는다
+//                    arrayList.add(noticeSub);
+//
+//                }
+//                adapter.notifyDataSetChanged();//리스트 저장 및 새로고침
 
             }
 

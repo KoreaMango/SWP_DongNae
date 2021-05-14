@@ -29,6 +29,8 @@ public class ClubNameActivity extends AppCompatActivity {
     private DatabaseReference databaseReference;
     private String v_categoryName;
     private TextView categoryName;
+    String clubName;
+
 
 
 
@@ -44,6 +46,9 @@ public class ClubNameActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         arrayList = new ArrayList<>(); // 카테고리 액티비티 클래스의 객체를 담을 어레이 리스트
 
+        Intent intent = getIntent();
+        String pos = intent.getStringExtra("pos");
+        int posInt = intent.getIntExtra("posInt",0);
         database = FirebaseDatabase.getInstance(); //파이어베이스 데이터 베이스 연동
         databaseReference = database.getReference("동아리"); //db 테이블 연결화
 
@@ -53,13 +58,14 @@ public class ClubNameActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 //파이어베이스 데이터베이스의 데이터를 받아오는곳
                 arrayList.clear(); //기존 배열리스트 초기화
-                Intent intent = getIntent();
-                String pos = intent.getStringExtra("pos");
-                v_categoryName = dataSnapshot.child(pos).child("id").getValue().toString();
-                Log.v("01077368247", v_categoryName);
+
+                SwitchTool switchTool = new SwitchTool();
+                v_categoryName = switchTool.switchClub(posInt);
                 categoryName.setText(v_categoryName);
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {  //반복문으로 데이터 리스트를 추출
-                    ClubNameSub clubNameSub = snapshot.getValue(ClubNameSub.class); //만들어둔 카테고리 액티비티 객체에 데이터를 담는다
+
+                for (DataSnapshot snapshot : dataSnapshot.child(pos).getChildren()) {  //반복문으로 데이터 리스트를 추출
+                    ClubNameSub clubNameSub = snapshot.getValue(ClubNameSub.class);
+                    Log.v("01077368247",clubNameSub.getId()+ "연동연동");
                     arrayList.add(clubNameSub);
 
                 }
@@ -69,7 +75,7 @@ public class ClubNameActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.e("MainActivity", String.valueOf(databaseError.toException()));   //에러문 출력
+                Log.e("01077368247", String.valueOf(databaseError.toException()));   //에러문 출력
             }
         });
 
@@ -78,10 +84,27 @@ public class ClubNameActivity extends AppCompatActivity {
         adapter.setOnItemClickListener(new OnNameItemClickListener() {
             @Override
             public void onItemClick(ClubNameAdapter.ClubNameViewHolder holder, View view, int position) {
-                ClubNameSub item = adapter.getItem(position);
-                Intent intent = new Intent(ClubNameActivity.this, ViewClub.class);
-                intent.putExtra("bdh","bdh");
-                startActivity(intent);//액티비티 이동
+                int itemPosition = recyclerView.getChildAdapterPosition(view);
+                String clubPositon = Integer.toString(itemPosition);
+
+                databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        //파이어베이스 데이터베이스의 데이터를 받아오는곳
+
+                        clubName = dataSnapshot.child(pos).child(clubPositon).child("id").getValue().toString();
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        Log.e("01077368247", String.valueOf(databaseError.toException()));   //에러문 출력
+                    }
+                });
+                Intent intent2 = new Intent(ClubNameActivity.this, ViewClub.class);
+                intent2.putExtra("club",clubName);
+
+                startActivity(intent2);//액티비티 이동
             }
         });
 

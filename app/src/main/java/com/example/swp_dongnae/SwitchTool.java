@@ -10,10 +10,10 @@ public class SwitchTool {
                 item = "공연 분과";
                 break;
             case 1:
-                item = "그림 분과";
+                item = "국제 분과";
                 break;
             case 2:
-                item = "국제 분과";
+                item = "그림 분과";
                 break;
             case 3:
                 item = "무예 분과";

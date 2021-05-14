@@ -42,16 +42,16 @@ public class CategoryActivity extends AppCompatActivity {
         arrayList = new ArrayList<>(); // 카테고리 액티비티 클래스의 객체를 담을 어레이 리스트
 
         database = FirebaseDatabase.getInstance(); //파이어베이스 데이터 베이스 연동
-        databaseReference = database.getReference("동아리"); //db 테이블 연결
+        databaseReference = database.getReference().child("분과 종류"); //db 테이블 연결
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 //파이어베이스 데이터베이스의 데이터를 받아오는곳
                 arrayList.clear(); //기존 배열리스트 초기화
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {  //반복문으로 데이터 리스트를 추출
-                    CategorySub categorySub = snapshot.getValue(CategorySub.class); //만들어둔 카테고리 액티비티 객체에 데이터를 담는다
+                    CategorySub categorySub = new CategorySub();
+                    categorySub.setId(snapshot.child("id").getValue().toString());
                     arrayList.add(categorySub);
-
                 }
                 adapter.notifyDataSetChanged();//리스트 저장 및 새로고침
 
@@ -70,12 +70,14 @@ public class CategoryActivity extends AppCompatActivity {
             public void onItemClick(CustomAdapter.CustomViewHolder holder, View view, int position) {
                 //CategorySub item = adapter.getItem(position);
                 int itemPosition = recyclerView.getChildAdapterPosition(view);
+
                 String index;
 
                 SwitchTool switchTool = new SwitchTool();
                 index = switchTool.switchClub(itemPosition);
                 Intent intent = new Intent(CategoryActivity.this, ClubNameActivity.class);
                 intent.putExtra("pos", index);
+                intent.putExtra("posInt",itemPosition);
                 Log.v("01077368247", index);
                 startActivity(intent);//액티비티 이동
             }
