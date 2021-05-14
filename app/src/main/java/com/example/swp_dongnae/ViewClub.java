@@ -20,7 +20,7 @@ public class ViewClub extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_club);
+        setContentView(R.layout.activity_view_bs);
 
         //뷰페이저 세팅
         ViewPager viewPager = findViewById(R.id.vp);

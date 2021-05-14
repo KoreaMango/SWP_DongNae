@@ -17,7 +17,7 @@
         <activity android:name=".GuideActivity" />
         <activity android:name=".ClubNameActivity" />
         <activity android:name=".CategoryActivity" />
-        <activity android:name=".SelectActivity" />
+        <activity android:name=".SelectActivity"/>
         <activity android:name=".ResultActivity" />
         <activity
             android:name=".Loading"
@@ -25,6 +25,7 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>

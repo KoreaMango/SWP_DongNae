@@ -34,8 +34,7 @@ public class SelectActivity extends AppCompatActivity { // 동아리 찾기 or �
         btnGuide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(SelectActivity.this, GuideActivity.class);
-                intent.putExtra("bdh","bdh");
+                Intent intent = new Intent(SelectActivity.this, Guide_Activity.class);
                 startActivity(intent);//액티비티 이동
             }
         });

@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     private ArrayList<CategorySub> arrayList;
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
-    int intro = 0; // 로딩화면 한번만
+    int intro = 0; // 로딩화면 한번만..?
 
 
 
