@@ -1,6 +1,7 @@
 package com.example.swp_dongnae;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +26,6 @@ public class Info extends Fragment {
     private String category;
     private String email;
     private String tel;
-
 
     public static Info newinstance() {
         Info infoinfo = new Info();
