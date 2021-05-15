@@ -1,39 +1,29 @@
 package com.example.swp_dongnae;
 
-import android.content.Intent;
+
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.VideoView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
 import java.util.ArrayList;
 
 public class Activity extends Fragment {
     private RecyclerView recyclerView;
     private View view;
-    private String one;
-    private String two;
-    private String three;
     private ArrayList<Bs> arrayList;
     private MediaAdapter adapter;
-
     private RecyclerView.LayoutManager layoutManager;
+
     public static Activity newinstance() {
         Activity activity = new Activity();
         return activity;
@@ -64,12 +54,10 @@ public class Activity extends Fragment {
                     arrayList.add(bs);
                 }
                 adapter.notifyDataSetChanged();
-
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
             }
 
         });
