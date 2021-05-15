@@ -1,6 +1,7 @@
 package com.example.swp_dongnae;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,14 +34,17 @@ public class NoticeAdapter extends RecyclerView.Adapter<NoticeAdapter.NoticeView
     @Override
     public void onBindViewHolder(@NonNull NoticeViewHolder holder, int position) {
 
-        holder.tv_id.setText(arrayList.get(position).getId());
-        holder.tv_userName.setText(arrayList.get(position).getUserName());
+        Log.v("013",arrayList.get(position).getDes());
+        holder.des.setText(arrayList.get(position).getDes());
+        Log.v("013",arrayList.get(position).getUser());
+        holder.user.setText(arrayList.get(position).getUser());
+        Log.v("013",arrayList.get(position).getDate());
+        holder.date.setText(arrayList.get(position).getDate());
 
     }
 
     @Override
     public int getItemCount() {
-
         return (arrayList != null ? arrayList.size() : 0);
     }
 
@@ -57,15 +61,15 @@ public class NoticeAdapter extends RecyclerView.Adapter<NoticeAdapter.NoticeView
 
     public static class NoticeViewHolder extends RecyclerView.ViewHolder {
 
-
-        TextView tv_id;
-
-        TextView tv_userName;
+        TextView des;
+        TextView user;
+        TextView date;
 
         public NoticeViewHolder(@NonNull View itemView, final OnNoticeItemClickListener listener) {
             super(itemView);
-            this.tv_id = itemView.findViewById(R.id.tv_id);
-            this.tv_userName = itemView.findViewById(R.id.tv_userName);
+            this.des = itemView.findViewById(R.id.tv_des);
+            this.user = itemView.findViewById(R.id.tv_user);
+            this.date = itemView.findViewById(R.id.tv_date);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

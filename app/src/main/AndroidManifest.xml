@@ -14,7 +14,7 @@
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity android:name=".DetailActivity" />
         <activity android:name=".ViewClub" />
-        <activity android:name=".GuideActivity" />
+        <activity android:name=".Guide_Activity" />
         <activity android:name=".ClubNameActivity" />
         <activity android:name=".CategoryActivity" />
         <activity android:name=".SelectActivity"/>

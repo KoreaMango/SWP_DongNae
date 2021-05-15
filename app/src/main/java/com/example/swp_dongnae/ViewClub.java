@@ -1,7 +1,6 @@
 package com.example.swp_dongnae;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,11 +29,12 @@ public class ViewClub extends AppCompatActivity {
         viewPager.setAdapter(fragmentPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
 
-        String pos = getIntent().getStringExtra("club");
+        String clubName = getIntent().getStringExtra("club");
 
-        Log.v("010773682",pos+"1");
         tv_clubName = findViewById(R.id.tv_clubName);
-        tv_clubName.setText(pos);
+        tv_clubName.setText(clubName);
 
     }
+
+
 }

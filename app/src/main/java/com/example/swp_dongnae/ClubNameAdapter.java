@@ -40,6 +40,7 @@ public class ClubNameAdapter extends RecyclerView.Adapter<ClubNameAdapter.ClubNa
                 .into(holder.iv_profile);
         holder.tv_id.setText(arrayList.get(position).getId());
 
+
     }
 
     @Override

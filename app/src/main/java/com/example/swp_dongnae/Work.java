@@ -2,6 +2,7 @@ package com.example.swp_dongnae;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,20 +45,28 @@ public class Work extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         arrayList = new ArrayList<>(); // 카테고리 액티비티 클래스의 객체를 담을 어레이 리스트
 
+        String pos = getActivity().getIntent().getStringExtra("pos");
+        String clubPos = getActivity().getIntent().getStringExtra("clubPos");
+
+
         database = FirebaseDatabase.getInstance(); //파이어베이스 데이터 베이스 연동
-        databaseReference = database.getReference("동아리"); //db 테이블 연결화
+        databaseReference = database.getReference("동아리").child(pos).child(clubPos).child("게시글").child("협업"); //db 테이블 연결화
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                arrayList.clear(); //기존 배열리스트 초기화
-//                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {  //반복문으로 데이터 리스트를 추출
-//                    NoticeSub noticeSub = new NoticeSub();
-//                    noticeSub.setId(dataSnapshot.child("id").getValue().toString()); //만들어둔 카테고리 액티비티 객체에 데이터를 담는다
-//                    arrayList.add(noticeSub); //TODO 인텐트 클릭으로 동아리 이름을 넘겨주고 동아리 이름 동선을 넣어주면 된다.
-//
-//                }
-//                adapter.notifyDataSetChanged();//리스트 저장 및 새로고침
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                arrayList.clear(); //기존 배열리스트 초기화
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {  //반복문으로 데이터 리스트를 추출
+                    Log.v("016",snapshot.getValue().toString() + "연동연동");
+                    NoticeSub noticeSub = snapshot.getValue(NoticeSub.class);
+                    Log.v("011",noticeSub.getDate()+ "연동연동");
+                    Log.v("011",noticeSub.getDes()+ "연동연동");
+                    Log.v("011",noticeSub.getUser()+ "연동연동");
+
+                    arrayList.add(noticeSub);
+
+                }
+                adapter.notifyDataSetChanged();//리스트 저장 및 새로고침
 
             }
 
@@ -68,6 +77,8 @@ public class Work extends Fragment {
         });
 
         adapter = new NoticeAdapter(arrayList, view.getContext());
+        RecyclerDecoration spaceDecoration = new RecyclerDecoration(20);
+        recyclerView.addItemDecoration(spaceDecoration);
         recyclerView.setAdapter(adapter); //리사이클러뷰에 어댑터 연결
         adapter.setOnItemClickListener(new OnNoticeItemClickListener() {
             @Override

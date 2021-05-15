@@ -46,9 +46,9 @@ public class ClubNameActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         arrayList = new ArrayList<>(); // 카테고리 액티비티 클래스의 객체를 담을 어레이 리스트
 
-        Intent intent = getIntent();
-        String pos = intent.getStringExtra("pos");
-        int posInt = intent.getIntExtra("posInt",0);
+
+        String pos = getIntent().getStringExtra("pos");
+        int posInt = getIntent().getIntExtra("posInt",0);
         database = FirebaseDatabase.getInstance(); //파이어베이스 데이터 베이스 연동
         databaseReference = database.getReference("동아리"); //db 테이블 연결화
 
@@ -87,13 +87,19 @@ public class ClubNameActivity extends AppCompatActivity {
                 int itemPosition = recyclerView.getChildAdapterPosition(view);
                 String clubPositon = Integer.toString(itemPosition);
 
+
                 databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         //파이어베이스 데이터베이스의 데이터를 받아오는곳
 
                         clubName = dataSnapshot.child(pos).child(clubPositon).child("id").getValue().toString();
-
+                        Intent intent2 = new Intent(ClubNameActivity.this, ViewClub.class);
+                        intent2.putExtra("club",clubName);
+                        intent2.putExtra("pos",pos);
+                        intent2.putExtra("clubPos",clubPositon);
+                        Log.v("01077368",clubName);
+                        startActivity(intent2);//액티비티 이동
                     }
 
                     @Override
@@ -101,13 +107,13 @@ public class ClubNameActivity extends AppCompatActivity {
                         Log.e("01077368247", String.valueOf(databaseError.toException()));   //에러문 출력
                     }
                 });
-                Intent intent2 = new Intent(ClubNameActivity.this, ViewClub.class);
-                intent2.putExtra("club",clubName);
 
-                startActivity(intent2);//액티비티 이동
+
             }
         });
 
     }
+
+
 
 }

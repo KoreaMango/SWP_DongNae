@@ -1,6 +1,5 @@
 package com.example.swp_dongnae;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,13 +42,16 @@ public class Info extends Fragment {
         TextView tv_captain = (TextView) view.findViewById(R.id.tv_cap);
         TextView tv_category = (TextView) view.findViewById(R.id.tv_cat);
         TextView tv_email = (TextView) view.findViewById(R.id.tv_email);
-        TextView tv_tel = (TextView) view.findViewById(R.id.tv_tel);
+        TextView tv_tell = (TextView) view.findViewById(R.id.tv_tel);
 
-        final DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("동아리").child("공연 분과").child("기라성");
+        String pos = getActivity().getIntent().getStringExtra("pos");
+        String clubPos = getActivity().getIntent().getStringExtra("clubPos");
+
+        final DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("동아리").child(pos).child(clubPos);
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Intent intent = new Intent(getActivity(), ViewClub.class);
+
                 Bs bs = new Bs(activity, purpose, captain, category, email, tel);
 
                 bs.setActivity(dataSnapshot.child("activity").getValue().toString());
@@ -64,7 +66,7 @@ public class Info extends Fragment {
                 tv_captain.setText(bs.getCaptain());
                 tv_category.setText(bs.getCategory());
                 tv_email.setText(bs.getEmail());
-                tv_tel.setText(bs.getTel());
+                tv_tell.setText(bs.getTel());
 
             }
 
