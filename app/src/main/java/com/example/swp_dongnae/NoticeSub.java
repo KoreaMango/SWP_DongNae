@@ -2,25 +2,33 @@ package com.example.swp_dongnae;
 
 public class NoticeSub {
 
-    private String id;
-    private String userName;
+    private String des;
+    private String user;
+    private String date;
 
 
-    public NoticeSub(){}
-
-    public String getId() {
-        return id;
+    public NoticeSub() {
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public String getDes() {
+        return des;
     }
 
-    public String getUserName() {
-        return userName;
+    public void setDes(String des) {
+        this.des = des;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public String getDate() { return date; }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }

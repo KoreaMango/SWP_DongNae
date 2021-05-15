@@ -1,5 +1,6 @@
 package com.example.swp_dongnae;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -27,6 +28,7 @@ public class QnA extends Fragment {
     private RecyclerView recyclerView;
     private NoticeAdapter adapter;
     private ArrayList<NoticeSub> arrayList;
+    private RecyclerView.LayoutManager layoutManager;
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
 
@@ -40,26 +42,39 @@ public class QnA extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.qna, container, false);
 
-
+        Context context = view.getContext();
         recyclerView = (RecyclerView) view.findViewById(R.id.qna_rv); //TODO 리사이클 뷰 아이디 연
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setHasFixedSize(true); //리사이클러뷰 성능 강화
+        layoutManager = new LinearLayoutManager(context);
+        recyclerView.setLayoutManager(layoutManager);
         arrayList = new ArrayList<>(); // 카테고리 액티비티 클래스의 객체를 담을 어레이 리스트
 
+        String pos = getActivity().getIntent().getStringExtra("pos");
+        String clubPos = getActivity().getIntent().getStringExtra("clubPos");
+
+
+
+
         database = FirebaseDatabase.getInstance(); //파이어베이스 데이터 베이스 연동
-        databaseReference = database.getReference("동아리"); //db 테이블 연결화
+        databaseReference = database.getReference("동아리").child(pos).child(clubPos).child("게시글").child("QnA"); //db 테이블 연결화
 
 
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                //파이어베이스 데이터베이스의 데이터를 받아오는곳
-//                arrayList.clear(); //기존 배열리스트 초기화
-//                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {  //반복문으로 데이터 리스트를 추출
-//                    NoticeSub noticeSub = snapshot.getValue(NoticeSub.class); //만들어둔 카테고리 액티비티 객체에 데이터를 담는다
-//                    arrayList.add(noticeSub);
-//
-//                }
-//                adapter.notifyDataSetChanged();//리스트 저장 및 새로고침
+                //파이어베이스 데이터베이스의 데이터를 받아오는곳
+                arrayList.clear(); //기존 배열리스트 초기화
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {  //반복문으로 데이터 리스트를 추출
+                    Log.v("016",snapshot.getValue().toString() + "연동연동");
+                    NoticeSub noticeSub = snapshot.getValue(NoticeSub.class);
+                    Log.v("011",noticeSub.getDate()+ "연동연동");
+                    Log.v("011",noticeSub.getDes()+ "연동연동");
+                    Log.v("011",noticeSub.getUser()+ "연동연동");
+
+                    arrayList.add(noticeSub);
+
+                }
+                adapter.notifyDataSetChanged();//리스트 저장 및 새로고침
 
             }
 
@@ -69,7 +84,7 @@ public class QnA extends Fragment {
             }
         });
 
-        adapter = new NoticeAdapter(arrayList, view.getContext());
+        adapter = new NoticeAdapter(arrayList, context);
         RecyclerDecoration spaceDecoration = new RecyclerDecoration(20);
         recyclerView.addItemDecoration(spaceDecoration);
 
@@ -77,9 +92,17 @@ public class QnA extends Fragment {
         adapter.setOnItemClickListener(new OnNoticeItemClickListener() {
             @Override
             public void onItemClick(NoticeAdapter.NoticeViewHolder holder, View view, int position) {
-                NoticeSub item = adapter.getItem(position);
-                Intent intent = new Intent(view.getContext(), DetailActivity.class);
-                intent.putExtra("bdh","bdh");
+
+                int itemPosition = recyclerView.getChildAdapterPosition(view);
+                String noticePosition = Integer.toString(itemPosition);
+
+
+                Intent intent = new Intent(context, DetailActivity.class);
+                intent.putExtra("type","QnA");
+                intent.putExtra("noticePosition", noticePosition);
+                intent.putExtra("pos", pos);
+                intent.putExtra("clubPos", clubPos);
+
                 startActivity(intent);//액티비티 이동
             }
         });

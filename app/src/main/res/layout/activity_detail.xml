@@ -38,6 +38,7 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/tv_noticeTitle"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:padding="5dp"
@@ -71,6 +72,7 @@
                         android:textSize="16dp"></TextView>
 
                     <TextView
+                        android:id="@+id/tv_noticeUser"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="4.4"
@@ -103,6 +105,7 @@
                     </TextView>
 
                     <TextView
+                        android:id="@+id/tv_noticeDay"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="4.7"
@@ -121,6 +124,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tv_noticeDes"
                         android:layout_width="match_parent"
                         android:layout_height="300dp"
                         android:layout_marginBottom="10dp"

@@ -53,7 +53,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
     public static class CustomViewHolder extends RecyclerView.ViewHolder {
         TextView tv_id;
 
-
         public CustomViewHolder(@NonNull View itemView, final OnCategoryItemClickListener listener) {
             super(itemView);
             this.tv_id = itemView.findViewById(R.id.tv_id);

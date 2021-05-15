@@ -7,6 +7,13 @@ public class Bs {
     private String category;
     private String email;
     private String tel;
+    private String media;
+
+    public Bs(){  }
+
+    public Bs(String media) {
+        this.media = media;
+    }
 
     public Bs(String activity, String purpose, String captain, String category, String email, String tel) {
         this.activity = activity;
@@ -23,9 +30,7 @@ public class Bs {
     public String getPurpose() {
         return purpose;
     }
-    public String getCaptain() {
-        return captain;
-    }
+    public String getCaptain() { return captain; }
     public String getCategory() {
         return category;
     }
@@ -35,6 +40,8 @@ public class Bs {
     public String getTel() {
         return tel;
     }
+    public String getMedia() { return media; }
+
 
     public void setActivity(String activity) {
         this.activity = activity;
@@ -54,7 +61,5 @@ public class Bs {
     public void setTel(String tel) {
         this.tel = tel;
     }
-
-
-
+    public void setMedia(String media) { this.media = media; }
 }

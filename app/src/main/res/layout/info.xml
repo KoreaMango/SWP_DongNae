@@ -13,7 +13,21 @@
         android:layout_height="match_parent"
         android:background="@drawable/border_thin"
         android:orientation="vertical">
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="30dp"
+            android:layout_gravity="center"
+            android:text="분과 : "
+            android:textColor="#000000"
+            android:textSize="15dp" />
         <TextView
             android:id="@+id/tv_cat"
             android:layout_width="wrap_content"
@@ -24,6 +38,22 @@
             android:layout_marginBottom="30dp"
             android:layout_gravity="center"
             android:text="백대홍"
+            android:textColor="#000000"
+            android:textSize="15dp" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="30dp"
+            android:layout_gravity="center"
+            android:text="목적 : "
             android:textColor="#000000"
             android:textSize="15dp" />
         <TextView
@@ -38,6 +68,22 @@
             android:text="백대홍"
             android:textColor="#000000"
             android:textSize="15dp" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="30dp"
+            android:layout_gravity="center"
+            android:text="활동 : "
+            android:textColor="#000000"
+            android:textSize="15dp" />
         <TextView
             android:id="@+id/tv_act"
             android:layout_width="wrap_content"
@@ -48,6 +94,22 @@
             android:layout_marginBottom="30dp"
             android:layout_gravity="center"
             android:text="백대홍"
+            android:textColor="#000000"
+            android:textSize="15dp" />
+       </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="30dp"
+            android:layout_gravity="center"
+            android:text="회장 : "
             android:textColor="#000000"
             android:textSize="15dp" />
         <TextView
@@ -62,6 +124,22 @@
             android:text="백대홍"
             android:textColor="#000000"
             android:textSize="15dp" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="30dp"
+            android:layout_gravity="center"
+            android:text="전화번호 : "
+            android:textColor="#000000"
+            android:textSize="15dp" />
         <TextView
             android:id="@+id/tv_tel"
             android:layout_width="wrap_content"
@@ -72,6 +150,22 @@
             android:layout_marginBottom="30dp"
             android:layout_gravity="center"
             android:text="백대홍"
+            android:textColor="#000000"
+            android:textSize="15dp" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="30dp"
+            android:layout_gravity="center"
+            android:text="이메일 : "
             android:textColor="#000000"
             android:textSize="15dp" />
         <TextView
@@ -86,6 +180,8 @@
             android:text="백대홍"
             android:textColor="#000000"
             android:textSize="15dp" />
+    </LinearLayout>
+
 
     </LinearLayout>
 
