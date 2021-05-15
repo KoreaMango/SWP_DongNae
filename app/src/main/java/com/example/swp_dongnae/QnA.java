@@ -92,9 +92,17 @@ public class QnA extends Fragment {
         adapter.setOnItemClickListener(new OnNoticeItemClickListener() {
             @Override
             public void onItemClick(NoticeAdapter.NoticeViewHolder holder, View view, int position) {
-                NoticeSub item = adapter.getItem(position);
+
+                int itemPosition = recyclerView.getChildAdapterPosition(view);
+                String noticePosition = Integer.toString(itemPosition);
+
+
                 Intent intent = new Intent(context, DetailActivity.class);
-                intent.putExtra("bdh", "bdh");
+                intent.putExtra("type","QnA");
+                intent.putExtra("noticePosition", noticePosition);
+                intent.putExtra("pos", pos);
+                intent.putExtra("clubPos", clubPos);
+
                 startActivity(intent);//액티비티 이동
             }
         });
