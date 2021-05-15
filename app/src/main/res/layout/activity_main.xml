@@ -85,5 +85,6 @@
         android:text="로그아웃"
         android:visibility="gone"/>
 
+
 </LinearLayout>
 
