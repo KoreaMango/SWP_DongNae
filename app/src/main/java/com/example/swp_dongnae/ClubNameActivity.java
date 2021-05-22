@@ -49,10 +49,9 @@ public class ClubNameActivity extends AppCompatActivity {
 
         String pos = getIntent().getStringExtra("pos");
         int posInt = getIntent().getIntExtra("posInt",0);
+
         database = FirebaseDatabase.getInstance(); //파이어베이스 데이터 베이스 연동
         databaseReference = database.getReference("동아리"); //db 테이블 연결화
-
-
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

@@ -212,7 +212,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         copy[0] = DevMail;
-                        CopyText("Dev", copy[0]);
+                        CopyText("Dev", copy[0]); // 사용된 메소드
                     }
                 });
 
@@ -233,6 +233,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                 startActivity(intent);//액티비티 이동
             }
         });
+
 
     }
 

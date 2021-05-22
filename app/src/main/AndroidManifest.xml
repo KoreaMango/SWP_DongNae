@@ -12,12 +12,13 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
+        <activity android:name=".WriteActivity"></activity>
         <activity android:name=".DetailActivity" />
         <activity android:name=".ViewClub" />
         <activity android:name=".Guide_Activity" />
         <activity android:name=".ClubNameActivity" />
         <activity android:name=".CategoryActivity" />
-        <activity android:name=".SelectActivity"/>
+        <activity android:name=".SelectActivity" />
         <activity android:name=".ResultActivity" />
         <activity
             android:name=".Loading"
@@ -25,7 +26,6 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>

@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".WriteActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/border"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/et_noticeTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="5dp"
+                        android:background="@null"
+                        android:textColor = "@color/black"
+                        android:hint="제목을 입력하세요"
+                        android:textColorHint="#808080"
+                        android:imeOptions="actionDone"
+                        android:privateImeOptions="defaultInputmode=korean"
+                        >
+
+                    </EditText>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/border"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="0.6"
+                        android:gravity="center"
+                        android:text="작성자 : "
+                        android:textColor="@color/black"
+                        android:textSize="16dp"></TextView>
+
+                    <EditText
+                        android:id="@+id/et_noticeUser"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4.4"
+                        android:padding="5dp"
+                        android:background="@null"
+                        android:textColor = "@color/black"
+                        android:hint="작성자를 입력하세요"
+                        android:textColorHint="#808080"
+                        android:privateImeOptions="defaultInputmode=korean"
+                        android:imeOptions="actionDone">
+
+                    </EditText>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/border"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="0.35"
+                        android:gravity="center"
+                        android:text="작성날짜:"
+                        android:textColor="@color/black"
+                        android:textSize="16dp">
+
+                    </TextView>
+
+                    <EditText
+                        android:id="@+id/et_noticeDay"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4.7"
+                        android:padding="5dp"
+                        android:background="@null"
+                        android:textColor = "@color/black"
+                        android:hint="작성날짜를 입력하세요"
+                        android:textColorHint="#808080"
+                        android:privateImeOptions="defaultInputmode=korean"
+                        android:imeOptions="actionDone">
+
+                    </EditText>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/border"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/et_noticeDes"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="10dp"
+                        android:padding="5dp"
+                        android:background="@null"
+                        android:textColor = "@color/black"
+                        android:hint="내용을 입력하세요"
+                        android:textColorHint="#808080"
+                        android:privateImeOptions="defaultInputmode=korean"
+                        android:imeOptions="actionDone">
+
+                    </EditText>
+                </LinearLayout>
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="글쓰기"
+                    android:id="@+id/putButton"
+                    >
+                </Button>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

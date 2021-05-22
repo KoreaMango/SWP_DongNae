@@ -5,9 +5,15 @@ public class NoticeSub {
     private String des;
     private String user;
     private String date;
-
+    private String title;
 
     public NoticeSub() {
+    }
+    public NoticeSub(String mDes, String mUser, String mDate,String mTitle){
+        this.des = mDes;
+        this.user = mUser;
+        this.date = mDate;
+        this.title = mTitle;
     }
 
     public String getDes() {
@@ -30,5 +36,11 @@ public class NoticeSub {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getTitle() { return title; }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 }
