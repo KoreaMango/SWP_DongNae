@@ -78,37 +78,37 @@ public class GuideViewPagerAdapter extends PagerAdapter {
         switch (position)
         {
             case 0:
-                logo.setImageResource(R.drawable.dna1);
+                logo.setImageResource(R.drawable.logo);
                 ind1.setImageResource(R.drawable.selected);
                 ind2.setImageResource(R.drawable.unselected);
                 ind3.setImageResource(R.drawable.unselected);
 
-                Title.setText("테스트1");
-                desc.setText("테스트1은");
+                Title.setText("동네");
+                desc.setText("동네는 동아리를 찾고자 하는 학생 , 동아리회원을 모집하고자 하는 모든 학생들에게 도움을 주고자 만든 어플입니다.");
                 back.setVisibility(View.GONE);
                 next.setVisibility(View.VISIBLE);
                 break;
 
             case 1:
-                logo.setImageResource(R.drawable.pig);
+                logo.setImageResource(R.drawable.human);
                 ind1.setImageResource(R.drawable.unselected);
                 ind2.setImageResource(R.drawable.selected);
                 ind3.setImageResource(R.drawable.unselected);
 
-                Title.setText("테스트2");
-                desc.setText("테스트2은");
+                Title.setText("일반회원");
+                desc.setText("일반 회원은 동아리 찾기를 이용하여 자신이 원하는 동아리의 정보를 얻을수 있습니다.");
                 back.setVisibility(View.VISIBLE);
                 next.setVisibility(View.VISIBLE);
                 break;
 
             case 2:
-                logo.setImageResource(R.drawable.smile);
+                logo.setImageResource(R.drawable.businessman);
                 ind1.setImageResource(R.drawable.unselected);
                 ind2.setImageResource(R.drawable.unselected);
                 ind3.setImageResource(R.drawable.selected);
 
-                Title.setText("테스트3");
-                desc.setText("테스트3은");
+                Title.setText("회장 회원");
+                desc.setText("회장 회원님은 어플 초기 화면의 문의하기 버튼을 이용하여 개발자에게 자신의 동아리에 대한 정보를 제공해주시면 동아리 홍보 및 정보제공을 대신해드립니다.");
                 back.setVisibility(View.VISIBLE);
                 next.setVisibility(View.GONE);
                 break;
