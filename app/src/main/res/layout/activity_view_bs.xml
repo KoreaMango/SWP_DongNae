@@ -25,12 +25,12 @@
             android:paddingBottom="13dp"
             android:gravity="center_horizontal"
             android:text="기라성"
-            android:textColor="@color/lightGreen"
+            android:textColor="@color/white"
             android:textSize="25dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:background="@drawable/brn_bg"/>
+            android:background="@drawable/brn_bg2"/>
 
 
         <androidx.viewpager.widget.ViewPager
