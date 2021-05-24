@@ -1,7 +1,6 @@
 package com.example.swp_dongnae;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,11 +34,9 @@ public class NoticeAdapter extends RecyclerView.Adapter<NoticeAdapter.NoticeView
     public void onBindViewHolder(@NonNull NoticeViewHolder holder, int position) {
 
         holder.title.setText(arrayList.get(position).getTitle());
-        Log.v("013",arrayList.get(position).getDes());
 
-        Log.v("013",arrayList.get(position).getUser());
         holder.user.setText(arrayList.get(position).getUser());
-        Log.v("013",arrayList.get(position).getDate());
+
         holder.date.setText(arrayList.get(position).getDate());
 
     }

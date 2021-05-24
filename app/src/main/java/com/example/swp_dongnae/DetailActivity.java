@@ -47,7 +47,7 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        String nickName = getIntent().getStringExtra("nickName");
+
         put = findViewById(R.id.putRepleBtn);
         reple = findViewById(R.id.et_reple);
 
@@ -63,6 +63,8 @@ public class DetailActivity extends AppCompatActivity {
         String clubPos = getIntent().getStringExtra("clubPos");
         String type = getIntent().getStringExtra("type");
         String noticePosition = getIntent().getStringExtra("noticePosition");
+        String nickName = getIntent().getStringExtra("nickName");
+
         replePosition = noticePosition;
 
         database = FirebaseDatabase.getInstance(); //파이어베이스 데이터 베이스 연동
@@ -106,7 +108,7 @@ public class DetailActivity extends AppCompatActivity {
                 }
                 else{
 
-                    writeNewReple(repleDes);
+                    writeNewReple(repleDes,nickName);
                     Log.v("7777","실행");
                 }
             }
@@ -114,10 +116,10 @@ public class DetailActivity extends AppCompatActivity {
 
     }
 
-    private void writeNewReple(String des) {
+    private void writeNewReple(String des, String nick) {
 
         String noticeCount = Integer.toString(count);
-        databaseReference.child(replePosition).child("rep").child(noticeCount).child("user").setValue("NULL");
+        databaseReference.child(replePosition).child("rep").child(noticeCount).child("user").setValue(nick);
         databaseReference.child(replePosition).child("rep").child(noticeCount).child("des").setValue(des);
 
         count = 0;

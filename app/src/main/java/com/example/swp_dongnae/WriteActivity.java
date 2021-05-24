@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import com.google.firebase.messaging.FirebaseMessaging;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 public class WriteActivity extends AppCompatActivity {
@@ -29,6 +29,7 @@ public class WriteActivity extends AppCompatActivity {
         setContentView(R.layout.activity_write);
 
         String nickName = getIntent().getStringExtra("nickName");
+        Log.v("9999", nickName + 1);
         put = findViewById(R.id.putButton);
         et_title = findViewById(R.id.et_noticeTitle);
         et_date = findViewById(R.id.et_noticeDay);
@@ -37,8 +38,8 @@ public class WriteActivity extends AppCompatActivity {
         et_description = findViewById(R.id.et_noticeDes);
 
 
-
-        FirebaseMessaging.getInstance().subscribeToTopic("notice");
+        //무슨 코드인지 몰라서 주석처리합니다
+        //FirebaseMessaging.getInstance().subscribeToopic("notice");
 
         put.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,12 +60,13 @@ public class WriteActivity extends AppCompatActivity {
                         intentB.putExtra("work3", nickName);
                         intentB.putExtra("work4", description);
                         Log.v("9999", "월크로가자");
+                        Log.v("9999", nickName);
 
 
                     } else if (flag.equals("qna")) {
                         intentB.putExtra("qna1", title);
                         intentB.putExtra("qna2", date);
-                        intentB.putExtra("qna3", user);
+                        intentB.putExtra("qna3", nickName);
                         intentB.putExtra("qna4", description);
                         Log.v("9999", "qna로 가자 ");
                     }
