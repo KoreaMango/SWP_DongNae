@@ -33,14 +33,13 @@
 
         <ImageView
             android:id="@+id/login"
-            android:layout_width="match_parent"
+            android:layout_width="272dp"
             android:layout_height="50dp"
-            android:src="@drawable/kakao_login"
-            android:visibility="gone" />
+            android:src="@drawable/kakao_login_large_wide" />
 
         <com.google.android.gms.common.SignInButton
             android:id="@+id/btn_google"
-            android:layout_width="272dp"
+            android:layout_width="280dp"
             android:layout_height="50dp"
             android:layout_marginTop="10dp"/>
 
@@ -48,13 +47,15 @@
             android:id="@+id/btn_next"
             android:layout_width="272dp"
             android:layout_height="50dp"
+            android:textColor="@color/lightGreen"
             android:layout_centerInParent="true"
-            android:background="@color/lightGreen"
+            android:background="@drawable/brn_bg"
             android:text="계속하기"
             android:visibility="gone"/>
 
         <Button
-            android:background="@color/lightGreen"
+            android:background="@drawable/brn_bg"
+            android:textColor="@color/lightGreen"
             android:id="@+id/btnPopUp"
             android:layout_width="272dp"
             android:layout_height="50dp"
@@ -67,7 +68,8 @@
             />
 
         <Button
-            android:background="@color/lightGreen"
+            android:background="@drawable/brn_bg"
+            android:textColor="@color/lightGreen"
             android:id="@+id/test"
             android:layout_width="272dp"
             android:layout_height="50dp"

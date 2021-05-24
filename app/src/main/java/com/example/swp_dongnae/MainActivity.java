@@ -5,6 +5,7 @@ import android.content.ClipboardManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Debug;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -87,12 +88,9 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                             intent.putExtra("photoUrl",String.valueOf(account.getPhotoUrl())); //특정 자료형을 스트링 형태로 변환
 
                             startActivity(intent);
-                            btn_google.setVisibility(View.GONE);
                             logoutButton.setVisibility(View.VISIBLE);
                         }else{
                             Toast.makeText(MainActivity.this,"로그인 실패",Toast.LENGTH_SHORT).show();
-                            btn_google.setVisibility(View.VISIBLE);
-                            logoutButton.setVisibility(View.GONE);
                         }
 
                     }
@@ -114,8 +112,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Intent intent = new Intent(this, Loading.class);
-        startActivity(intent);
 
 
         loginButton = findViewById(R.id.login);
@@ -178,9 +174,10 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             public void onClick(View view) {
                 if(UserApiClient.getInstance().isKakaoTalkLoginAvailable(MainActivity.this)) {
                     UserApiClient.getInstance().loginWithKakaoTalk(MainActivity.this, callback);
-                    startActivity(intent);
+
                 } else {
                     UserApiClient.getInstance().loginWithKakaoAccount(MainActivity.this, callback);
+
                 }
             }
         });
@@ -238,8 +235,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
     }
 
-
-
+    Intent intent;
     private void updateKakaoLoginUi() {
         UserApiClient.getInstance().me(new Function2<User, Throwable, Unit>() {
             @Override
@@ -252,28 +248,25 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                     Log.i(TAG,"invoke: gender="+user.getKakaoAccount().getGender());
                     Log.i(TAG,"invoke: age="+user.getKakaoAccount().getAgeRange());
 
-                    nickName.setText(user.getKakaoAccount().getProfile().getNickname());
-                    Glide.with(profileImage).load(user.getKakaoAccount().getProfile().getThumbnailImageUrl()).circleCrop().into(profileImage);
-                    Intent intent = new Intent(MainActivity.this, ResultActivity.class);
+
+                    intent = new Intent(MainActivity.this, ResultActivity.class);
                     intent.putExtra("nickName",user.getKakaoAccount().getProfile().getNickname());
                     intent.putExtra("photoUrl", user.getKakaoAccount().getProfile().getProfileImageUrl());
                     startActivity(intent);
 
-
-                    loginButton.setVisibility(View.GONE);
+                    loginButton.setVisibility(View.VISIBLE);
                     logoutButton.setVisibility(View.VISIBLE);
-                    btn_google.setVisibility(View.GONE);
-                    BtnPopUp.setVisibility(View.GONE);
-                    test.setVisibility(View.GONE);
-                    btn_next.setVisibility(View.VISIBLE);
-                    loginLogo.setVisibility(View.GONE);
-                    profile.setVisibility(View.VISIBLE);
+                    btn_google.setVisibility(View.VISIBLE);
+                    BtnPopUp.setVisibility(View.VISIBLE);
+                    btn_next.setVisibility(View.GONE);
+                    loginLogo.setVisibility(View.VISIBLE);
+                    profile.setVisibility(View.GONE);
 
                 } else {
                     nickName.setText(null);
                     profileImage.setImageBitmap(null);
                     loginButton.setVisibility((View.VISIBLE));
-                    logoutButton.setVisibility(View.GONE);
+                    logoutButton.setVisibility(View.VISIBLE);
                     btn_google.setVisibility(View.VISIBLE);
                     BtnPopUp.setVisibility(View.VISIBLE);
                     test.setVisibility(View.VISIBLE);
@@ -302,4 +295,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         Toast.makeText(getApplicationContext(),"클립보드에 복사되었습니다.",Toast.LENGTH_SHORT).show(); // 토스트 메세지를 이용해 사용자에게 알림
 
     }
+
+
+
 }
+
