@@ -6,12 +6,13 @@
     android:paddingTop="20dp"
     android:paddingRight="10dp"
     android:paddingBottom="20dp"
+    android:background="@color/white"
     >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/border_thin"
+        android:background="@color/lightGreen"
         android:orientation="vertical">
 
         <TextView
@@ -24,7 +25,7 @@
             android:layout_marginBottom="30dp"
             android:layout_gravity="center"
             android:text="백대홍"
-            android:textColor="#000000"
+            android:textColor="@color/white"
             android:textSize="20dp" />
 
     </LinearLayout>

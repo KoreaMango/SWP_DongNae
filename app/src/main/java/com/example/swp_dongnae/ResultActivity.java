@@ -16,6 +16,7 @@ public class ResultActivity extends AppCompatActivity {
     private Button logout_g;
     private TextView tv_result;
     private ImageView iv_profile;
+
    
 
     @Override
@@ -48,6 +49,7 @@ public class ResultActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ResultActivity.this,SelectActivity.class);
+                intent.putExtra("nickName",nickName);
                 startActivity(intent);//액티비티 이동
 
             }

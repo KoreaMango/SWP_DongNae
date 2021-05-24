@@ -52,6 +52,7 @@ public class Work extends Fragment {
 
         String pos = getActivity().getIntent().getStringExtra("pos");
         String clubPos = getActivity().getIntent().getStringExtra("clubPos");
+        String nickName = getActivity().getIntent().getStringExtra("nickName");
 
 
         database = FirebaseDatabase.getInstance(); //파이어베이스 데이터 베이스 연동
@@ -95,6 +96,7 @@ public class Work extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(view.getContext(),WriteActivity.class);
                 intent.putExtra("flag","work");
+                intent.putExtra("nickName",nickName);
                 startActivityForResult(intent,REQ_ADD_CONTACT);
             }
         });
@@ -113,6 +115,7 @@ public class Work extends Fragment {
                 intent.putExtra("type","협업");
                 intent.putExtra("noticePosition", noticePosition);
                 intent.putExtra("pos", pos);
+                intent.putExtra("nickName",nickName);
                 intent.putExtra("clubPos", clubPos);
 
                 startActivity(intent);//액티비티 이동

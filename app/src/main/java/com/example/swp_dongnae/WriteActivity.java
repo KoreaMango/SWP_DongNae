@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -27,10 +28,12 @@ public class WriteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_write);
 
+        String nickName = getIntent().getStringExtra("nickName");
         put = findViewById(R.id.putButton);
         et_title = findViewById(R.id.et_noticeTitle);
         et_date = findViewById(R.id.et_noticeDay);
-        et_user = findViewById(R.id.et_noticeUser);
+        TextView et_user = (TextView)findViewById(R.id.et_noticeUser);
+        et_user.setText(nickName);
         et_description = findViewById(R.id.et_noticeDes);
 
 
@@ -41,7 +44,6 @@ public class WriteActivity extends AppCompatActivity {
             public void onClick(View v) {
                 title = et_title.getText().toString();
                 date = et_date.getText().toString();
-                user = et_user.getText().toString();
                 description = et_description.getText().toString();
 
                 Log.v("9999",title + date + user + description);
@@ -53,7 +55,7 @@ public class WriteActivity extends AppCompatActivity {
                     if (flag.equals("work")) {
                         intentB.putExtra("work1", title);
                         intentB.putExtra("work2", date);
-                        intentB.putExtra("work3", user);
+                        intentB.putExtra("work3", nickName);
                         intentB.putExtra("work4", description);
                         Log.v("9999", "월크로가자");
 

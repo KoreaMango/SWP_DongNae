@@ -93,10 +93,12 @@ public class ClubNameActivity extends AppCompatActivity {
                         //파이어베이스 데이터베이스의 데이터를 받아오는곳
 
                         clubName = dataSnapshot.child(pos).child(clubPositon).child("id").getValue().toString();
+                        String nickName = getIntent().getStringExtra("nickName");
                         Intent intent2 = new Intent(ClubNameActivity.this, ViewClub.class);
                         intent2.putExtra("club",clubName);
                         intent2.putExtra("pos",pos);
                         intent2.putExtra("clubPos",clubPositon);
+                        intent2.putExtra("nickName",nickName);
                         Log.v("01077368",clubName);
                         startActivity(intent2);//액티비티 이동
                     }

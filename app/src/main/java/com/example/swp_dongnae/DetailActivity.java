@@ -47,6 +47,7 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
+        String nickName = getIntent().getStringExtra("nickName");
         put = findViewById(R.id.putRepleBtn);
         reple = findViewById(R.id.et_reple);
 

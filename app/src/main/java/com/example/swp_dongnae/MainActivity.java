@@ -178,6 +178,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             public void onClick(View view) {
                 if(UserApiClient.getInstance().isKakaoTalkLoginAvailable(MainActivity.this)) {
                     UserApiClient.getInstance().loginWithKakaoTalk(MainActivity.this, callback);
+                    startActivity(intent);
                 } else {
                     UserApiClient.getInstance().loginWithKakaoAccount(MainActivity.this, callback);
                 }
@@ -253,6 +254,10 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
                     nickName.setText(user.getKakaoAccount().getProfile().getNickname());
                     Glide.with(profileImage).load(user.getKakaoAccount().getProfile().getThumbnailImageUrl()).circleCrop().into(profileImage);
+                    Intent intent = new Intent(MainActivity.this, ResultActivity.class);
+                    intent.putExtra("nickName",user.getKakaoAccount().getProfile().getNickname());
+                    intent.putExtra("photoUrl", user.getKakaoAccount().getProfile().getProfileImageUrl());
+                    startActivity(intent);
 
 
                     loginButton.setVisibility(View.GONE);

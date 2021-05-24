@@ -73,7 +73,7 @@
                         android:textColor="@color/black"
                         android:textSize="16dp"></TextView>
 
-                    <EditText
+                    <TextView
                         android:id="@+id/et_noticeUser"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -81,12 +81,8 @@
                         android:padding="5dp"
                         android:background="@null"
                         android:textColor = "@color/black"
-                        android:hint="작성자를 입력하세요"
-                        android:textColorHint="#808080"
-                        android:privateImeOptions="defaultInputmode=korean"
-                        android:imeOptions="actionDone">
-
-                    </EditText>
+                        android:textColorHint="#808080">
+                    </TextView>
                 </LinearLayout>
 
                 <LinearLayout
