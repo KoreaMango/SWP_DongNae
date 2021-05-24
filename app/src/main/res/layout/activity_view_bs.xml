@@ -20,16 +20,17 @@
             android:id="@+id/tv_clubName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="13dp"
+            android:layout_marginTop="2dp"
+            android:paddingTop="13dp"
             android:paddingBottom="13dp"
-            android:background="@drawable/border_second"
             android:gravity="center_horizontal"
             android:text="기라성"
-            android:textColor="@color/black"
+            android:textColor="@color/lightGreen"
             android:textSize="25dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@drawable/brn_bg"/>
 
 
         <androidx.viewpager.widget.ViewPager
@@ -51,8 +52,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:tabTextColor="@color/black"
-        android:background="@drawable/border_thin">
+        app:tabTextColor="@color/lightGreen"
+        android:background="@drawable/brn_bg">
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"

@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-
+import com.google.firebase.messaging.FirebaseMessaging;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class WriteActivity extends AppCompatActivity {
@@ -38,6 +38,7 @@ public class WriteActivity extends AppCompatActivity {
 
 
 
+        FirebaseMessaging.getInstance().subscribeToTopic("notice");
 
         put.setOnClickListener(new View.OnClickListener() {
             @Override

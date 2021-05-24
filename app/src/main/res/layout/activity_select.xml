@@ -16,7 +16,8 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="@color/lightGreen"
+        android:background="@drawable/brn_bg"
+        android:textColor="@color/lightGreen"
         />
 
     <Button
@@ -29,7 +30,8 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="@color/lightGreen"
+        android:background="@drawable/brn_bg"
+        android:textColor="@color/lightGreen"
         />
 
 

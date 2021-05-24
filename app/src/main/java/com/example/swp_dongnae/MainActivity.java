@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                             intent.putExtra("photoUrl",String.valueOf(account.getPhotoUrl())); //특정 자료형을 스트링 형태로 변환
 
                             startActivity(intent);
-                            logoutButton.setVisibility(View.VISIBLE);
+                            logoutButton.setVisibility(View.GONE);
                         }else{
                             Toast.makeText(MainActivity.this,"로그인 실패",Toast.LENGTH_SHORT).show();
                         }
@@ -255,7 +255,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                     startActivity(intent);
 
                     loginButton.setVisibility(View.VISIBLE);
-                    logoutButton.setVisibility(View.VISIBLE);
+                    logoutButton.setVisibility(View.GONE);
                     btn_google.setVisibility(View.VISIBLE);
                     BtnPopUp.setVisibility(View.VISIBLE);
                     btn_next.setVisibility(View.GONE);
@@ -266,7 +266,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                     nickName.setText(null);
                     profileImage.setImageBitmap(null);
                     loginButton.setVisibility((View.VISIBLE));
-                    logoutButton.setVisibility(View.VISIBLE);
+                    logoutButton.setVisibility(View.GONE);
                     btn_google.setVisibility(View.VISIBLE);
                     BtnPopUp.setVisibility(View.VISIBLE);
                     test.setVisibility(View.VISIBLE);
