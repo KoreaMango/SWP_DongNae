@@ -1,5 +1,6 @@
 package com.example.swp_dongnae;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class WriteActivity extends AppCompatActivity {
@@ -53,14 +55,15 @@ public class WriteActivity extends AppCompatActivity {
                 flag = getIntent().getStringExtra("flag");
                 Intent intentB = new Intent();
 
-                if (!title.isEmpty()) {
+                if (!title.isEmpty() && !date.isEmpty() && !user.isEmpty() && !description.isEmpty()) {
                     if (flag.equals("work")) {
                         intentB.putExtra("work1", title);
                         intentB.putExtra("work2", date);
                         intentB.putExtra("work3", nickName);
                         intentB.putExtra("work4", description);
                         Log.v("9999", "월크로가자");
-                        Log.v("9999", nickName);
+                        setResult(RESULT_OK, intentB);
+                        finish();
 
 
                     } else if (flag.equals("qna")) {
@@ -69,18 +72,23 @@ public class WriteActivity extends AppCompatActivity {
                         intentB.putExtra("qna3", nickName);
                         intentB.putExtra("qna4", description);
                         Log.v("9999", "qna로 가자 ");
+                        setResult(RESULT_OK, intentB);
+                        finish();
                     }
                 } else {
-                    if (flag.equals("work")) {
-                        intentB.putExtra("work1", "fail");
-                    } else if (flag.equals("qna")) {
-                        intentB.putExtra("qna1", "fail");
-                    }
-                    Log.v("9999", "페일값 ");
+                    AlertDialog.Builder ad = new AlertDialog.Builder(WriteActivity.this);
+                    ad.setTitle("글쓰기 실패");
+                    ad.setMessage("작성하지 않은 항목이 있습니다.");
+                    ad.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+                    ad.show();
 
                 }
-                setResult(RESULT_OK, intentB);
-                finish();
+
             }
         });
     }

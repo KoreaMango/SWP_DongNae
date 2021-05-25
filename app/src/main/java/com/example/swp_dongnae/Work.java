@@ -147,10 +147,9 @@ public class Work extends Fragment {
                 des =  data.getStringExtra("work4");
                 Log.v("9999",title + date + user + des);
 
-                if(!data.getStringExtra("work1").equals("fail")){
-                    writeNewNotice(des,user,date,title);
-                    Log.v("9999","함수 실행 성공");
-                }
+
+                writeNewNotice(des,user,date,title);
+
             }
         }
     }

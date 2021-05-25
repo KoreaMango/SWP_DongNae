@@ -148,10 +148,9 @@ public class QnA extends Fragment {
                 des = data.getStringExtra("qna4");
                 Log.v("9999", title + date + user + des);
 
-                if (!data.getStringExtra("qna1").equals("fail")) {
-                    writeNewNotice(des, user, date, title);
-                    Log.v("9999", "함수 실행 성공");
-                }
+                writeNewNotice(des, user, date, title);
+
+
             }
         }
     }

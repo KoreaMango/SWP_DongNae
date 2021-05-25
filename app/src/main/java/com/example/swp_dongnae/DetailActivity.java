@@ -1,5 +1,6 @@
 package com.example.swp_dongnae;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.database.DataSnapshot;
@@ -104,7 +106,16 @@ public class DetailActivity extends AppCompatActivity {
             public void onClick(View v) {
                 repleDes = reple.getText().toString();
                 if (repleDes.isEmpty()) {
-                    Log.v("7777","실패");
+                    AlertDialog.Builder ad = new AlertDialog.Builder(DetailActivity.this);
+                    ad.setTitle("글쓰기 실패");
+                    ad.setMessage("작성하지 않은 항목이 있습니다.");
+                    ad.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+                    ad.show();
                 }
                 else{
 
