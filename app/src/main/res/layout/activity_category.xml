@@ -19,16 +19,16 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_gravity="center"
-            android:background="@color/white">
+            android:background="@drawable/brn_bg4">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="분과 이름"
+                android:text="분과"
                 android:textAlignment="center"
                 android:textSize="30dp"
-                android:textColor="@color/lightGreen"
+                android:textColor="@color/white"
                 android:layout_margin="10dp">
             </TextView>
 
