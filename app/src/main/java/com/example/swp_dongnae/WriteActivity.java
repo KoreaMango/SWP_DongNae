@@ -55,7 +55,7 @@ public class WriteActivity extends AppCompatActivity {
                 flag = getIntent().getStringExtra("flag");
                 Intent intentB = new Intent();
 
-                if (!title.isEmpty() && !date.isEmpty() && !user.isEmpty() && !description.isEmpty()) {
+                if (!title.isEmpty() && !date.isEmpty() && !nickName.isEmpty() && !description.isEmpty()) {
                     if (flag.equals("work")) {
                         intentB.putExtra("work1", title);
                         intentB.putExtra("work2", date);
