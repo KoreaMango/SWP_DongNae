@@ -18,7 +18,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
 
-        <activity android:name=".WriteActivity"></activity>
+        <activity android:name=".WriteActivity"/>
         <activity android:name=".DetailActivity" />
         <activity android:name=".ViewClub" />
         <activity android:name=".Guide_Activity" />
@@ -50,13 +50,13 @@
                     android:scheme="kakao38294660a3a4b4dda7d5a032233d78cb" />
             </intent-filter>
         </activity>
-        <service
-            android:name=".MyFirebaseMessagingService"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-            </intent-filter>
-        </service>
+<!--        <service-->
+<!--            android:name=".MyFirebaseMessagingService"-->
+<!--           android:exported="false">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="com.google.firebase.MESSAGING_EVENT" />-->
+<!--            </intent-filter>-->
+<!--        </service>-->
 
 
     </application>
