@@ -12,12 +12,15 @@ import android.widget.TextView;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class WriteActivity extends AppCompatActivity {
 
     Button put;
     EditText et_title;
-    EditText et_date;
-    EditText et_user;
+
+
     EditText et_description;
 
     String title;
@@ -30,13 +33,20 @@ public class WriteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_write);
 
+        long now = System.currentTimeMillis();
+        Date mDate = new Date(now);
+        SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
+        String getTime = simpleDate.format(mDate);
+
         String nickName = getIntent().getStringExtra("nickName");
         Log.v("9999", nickName + 1);
         put = findViewById(R.id.putButton);
         et_title = findViewById(R.id.et_noticeTitle);
-        et_date = findViewById(R.id.et_noticeDay);
         TextView et_user = (TextView)findViewById(R.id.et_noticeUser);
+        TextView et_date = (TextView)findViewById(R.id.et_noticeDay);
+        et_date.setText(getTime);
         et_user.setText(nickName);
+
         et_description = findViewById(R.id.et_noticeDes);
 
 
@@ -47,18 +57,16 @@ public class WriteActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 title = et_title.getText().toString();
-                date = et_date.getText().toString();
                 description = et_description.getText().toString();
 
-                Log.v("9999",title + date + user + description);
                 String flag;
                 flag = getIntent().getStringExtra("flag");
                 Intent intentB = new Intent();
 
-                if (!title.isEmpty() && !date.isEmpty() && !nickName.isEmpty() && !description.isEmpty()) {
+                if (!title.isEmpty() && !getTime.isEmpty() && !nickName.isEmpty() && !description.isEmpty()) {
                     if (flag.equals("work")) {
                         intentB.putExtra("work1", title);
-                        intentB.putExtra("work2", date);
+                        intentB.putExtra("work2", getTime);
                         intentB.putExtra("work3", nickName);
                         intentB.putExtra("work4", description);
                         Log.v("9999", "월크로가자");
@@ -68,7 +76,7 @@ public class WriteActivity extends AppCompatActivity {
 
                     } else if (flag.equals("qna")) {
                         intentB.putExtra("qna1", title);
-                        intentB.putExtra("qna2", date);
+                        intentB.putExtra("qna2", getTime);
                         intentB.putExtra("qna3", nickName);
                         intentB.putExtra("qna4", description);
                         Log.v("9999", "qna로 가자 ");
