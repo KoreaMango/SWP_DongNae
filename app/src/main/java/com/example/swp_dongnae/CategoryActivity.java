@@ -75,9 +75,11 @@ public class CategoryActivity extends AppCompatActivity {
 
                 SwitchTool switchTool = new SwitchTool();
                 index = switchTool.switchClub(itemPosition);
+                String nickName = getIntent().getStringExtra("nickName");
                 Intent intent = new Intent(CategoryActivity.this, ClubNameActivity.class);
                 intent.putExtra("pos", index);
                 intent.putExtra("posInt",itemPosition);
+                intent.putExtra("nickName",nickName);
                 Log.v("01077368247", index);
                 startActivity(intent);//액티비티 이동
             }

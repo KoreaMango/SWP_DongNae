@@ -24,8 +24,10 @@ public class SelectActivity extends AppCompatActivity { // 동아리 찾기 or �
         btnSelectClub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String nickName = getIntent().getStringExtra("nickName");
                 Intent intent = new Intent(SelectActivity.this, CategoryActivity.class);
                 intent.putExtra("bdh","bdh");
+                intent.putExtra("nickName",nickName);
                 startActivity(intent);//액티비티 이동
             }
         });

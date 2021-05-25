@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.swp_dongnae">
 
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.DIAL_PHONE"/>
 
@@ -16,28 +17,25 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
+
+        <activity android:name=".WriteActivity"></activity>
         <activity android:name=".DetailActivity" />
-        <activity android:name=".ViewClub"
-        android:exported="true"/>
+        <activity android:name=".ViewClub" />
         <activity android:name=".Guide_Activity" />
         <activity android:name=".ClubNameActivity" />
         <activity android:name=".CategoryActivity" />
-        <activity android:name=".SelectActivity"/>
+        <activity android:name=".SelectActivity" />
         <activity android:name=".ResultActivity" />
         <activity
             android:name=".Loading"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
-
-        <activity
-            android:name=".MainActivity">
-
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
             <intent-filter>
-
                 <action android:name="android.intent.action.MAIN" />
 
-
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            </intent-filter></activity>
+        <activity android:name=".MainActivity">
+
         </activity>
         <activity android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity">
             <intent-filter>
@@ -52,6 +50,15 @@
                     android:scheme="kakao38294660a3a4b4dda7d5a032233d78cb" />
             </intent-filter>
         </activity>
+        <service
+            android:name=".MyFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+
     </application>
 
 </manifest>

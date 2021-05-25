@@ -49,10 +49,9 @@ public class ClubNameActivity extends AppCompatActivity {
 
         String pos = getIntent().getStringExtra("pos");
         int posInt = getIntent().getIntExtra("posInt",0);
+
         database = FirebaseDatabase.getInstance(); //파이어베이스 데이터 베이스 연동
         databaseReference = database.getReference("동아리"); //db 테이블 연결화
-
-
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -94,10 +93,12 @@ public class ClubNameActivity extends AppCompatActivity {
                         //파이어베이스 데이터베이스의 데이터를 받아오는곳
 
                         clubName = dataSnapshot.child(pos).child(clubPositon).child("id").getValue().toString();
+                        String nickName = getIntent().getStringExtra("nickName");
                         Intent intent2 = new Intent(ClubNameActivity.this, ViewClub.class);
                         intent2.putExtra("club",clubName);
                         intent2.putExtra("pos",pos);
                         intent2.putExtra("clubPos",clubPositon);
+                        intent2.putExtra("nickName",nickName);
                         Log.v("01077368",clubName);
                         startActivity(intent2);//액티비티 이동
                     }

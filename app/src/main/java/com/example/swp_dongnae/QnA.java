@@ -1,12 +1,12 @@
 package com.example.swp_dongnae;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,15 +22,19 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+import static android.app.Activity.RESULT_OK;
+
 public class QnA extends Fragment {
+    static final int REQ_ADD_CONTACT = 1 ;
     private View view;
 
     private RecyclerView recyclerView;
     private NoticeAdapter adapter;
     private ArrayList<NoticeSub> arrayList;
-    private RecyclerView.LayoutManager layoutManager;
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
+
+    static int count = 0;
 
     public static QnA newinstance() {
         QnA qa = new QnA();
@@ -42,35 +46,30 @@ public class QnA extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.qna, container, false);
 
-        Context context = view.getContext();
         recyclerView = (RecyclerView) view.findViewById(R.id.qna_rv); //TODO 리사이클 뷰 아이디 연
-        recyclerView.setHasFixedSize(true); //리사이클러뷰 성능 강화
-        layoutManager = new LinearLayoutManager(context);
-        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         arrayList = new ArrayList<>(); // 카테고리 액티비티 클래스의 객체를 담을 어레이 리스트
 
         String pos = getActivity().getIntent().getStringExtra("pos");
         String clubPos = getActivity().getIntent().getStringExtra("clubPos");
-
-
+        String nickName = getActivity().getIntent().getStringExtra("nickName");
 
 
         database = FirebaseDatabase.getInstance(); //파이어베이스 데이터 베이스 연동
         databaseReference = database.getReference("동아리").child(pos).child(clubPos).child("게시글").child("QnA"); //db 테이블 연결화
 
-
-        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+        databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                //파이어베이스 데이터베이스의 데이터를 받아오는곳
+                count = 0;
                 arrayList.clear(); //기존 배열리스트 초기화
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {  //반복문으로 데이터 리스트를 추출
-                    Log.v("016",snapshot.getValue().toString() + "연동연동");
+                    Log.v("016", snapshot.getValue().toString() + "연동연동");
                     NoticeSub noticeSub = snapshot.getValue(NoticeSub.class);
-                    Log.v("011",noticeSub.getDate()+ "연동연동");
-                    Log.v("011",noticeSub.getDes()+ "연동연동");
-                    Log.v("011",noticeSub.getUser()+ "연동연동");
-
+                    Log.v("011", noticeSub.getDate() + "연동연동");
+                    Log.v("011", noticeSub.getDes() + "연동연동");
+                    Log.v("011", noticeSub.getUser() + "연동연동");
+                    count++;
                     arrayList.add(noticeSub);
 
                 }
@@ -80,15 +79,30 @@ public class QnA extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.e("MainActivity", String.valueOf(databaseError.toException()));   //에러문 출력
             }
         });
 
-        adapter = new NoticeAdapter(arrayList, context);
+        adapter = new NoticeAdapter(arrayList, view.getContext());
         RecyclerDecoration spaceDecoration = new RecyclerDecoration(20);
         recyclerView.addItemDecoration(spaceDecoration);
-
         recyclerView.setAdapter(adapter); //리사이클러뷰에 어댑터 연결
+
+        /* 버튼을 클릭해 게시글을 작성하는 부분*/
+        Button writeButton;
+        writeButton = (Button) view.findViewById(R.id.writeBtn);
+        writeButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(view.getContext(),WriteActivity.class);
+                intent.putExtra("flag","qna");
+                intent.putExtra("nickName",nickName);
+                startActivityForResult(intent,REQ_ADD_CONTACT);
+            }
+        });
+
+
+
+
         adapter.setOnItemClickListener(new OnNoticeItemClickListener() {
             @Override
             public void onItemClick(NoticeAdapter.NoticeViewHolder holder, View view, int position) {
@@ -97,15 +111,48 @@ public class QnA extends Fragment {
                 String noticePosition = Integer.toString(itemPosition);
 
 
-                Intent intent = new Intent(context, DetailActivity.class);
-                intent.putExtra("type","QnA");
+                Intent intent = new Intent(view.getContext(), DetailActivity.class);
+                intent.putExtra("type", "QnA");
                 intent.putExtra("noticePosition", noticePosition);
                 intent.putExtra("pos", pos);
                 intent.putExtra("clubPos", clubPos);
+                intent.putExtra("nickName",nickName);
 
                 startActivity(intent);//액티비티 이동
             }
         });
         return view;
+    }
+
+    private void writeNewNotice(String des, String user, String date, String title) {
+        NoticeSub noticeSub = new NoticeSub(des, user, date, title);
+        String noticePosition = Integer.toString(count);
+        databaseReference.child(noticePosition).setValue(noticeSub);
+        count = 0;
+
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQ_ADD_CONTACT) {
+            if (resultCode == RESULT_OK) {
+                String des;
+                String user;
+                String date;
+                String title;
+
+                title = data.getStringExtra("qna1");
+                date = data.getStringExtra("qna2");
+                user = data.getStringExtra("qna3");
+                des = data.getStringExtra("qna4");
+                Log.v("9999", title + date + user + des);
+
+                if (!data.getStringExtra("qna1").equals("fail")) {
+                    writeNewNotice(des, user, date, title);
+                    Log.v("9999", "함수 실행 성공");
+                }
+            }
+        }
     }
 }

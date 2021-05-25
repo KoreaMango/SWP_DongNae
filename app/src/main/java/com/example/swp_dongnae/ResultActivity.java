@@ -10,12 +10,18 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
+import com.kakao.sdk.auth.model.OAuthToken;
+import com.kakao.sdk.user.UserApiClient;
+
+import kotlin.Unit;
+import kotlin.jvm.functions.Function1;
 
 public class ResultActivity extends AppCompatActivity {
     private Button btn_continue;
     private Button logout_g;
     private TextView tv_result;
     private ImageView iv_profile;
+
    
 
     @Override
@@ -37,9 +43,16 @@ public class ResultActivity extends AppCompatActivity {
         logout_g.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent2 = new Intent(getApplicationContext(),MainActivity.class);
-                startActivityForResult(intent2,101);
-
+                UserApiClient.getInstance().logout(new Function1<Throwable, Unit>() {
+                    @Override
+                    public Unit invoke(Throwable throwable) {
+                        Intent intent = new Intent(ResultActivity.this, MainActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivityForResult(intent, 101);
+                        finish();
+                        return null;
+                    }
+                });
             }
         });
 
@@ -48,6 +61,7 @@ public class ResultActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ResultActivity.this,SelectActivity.class);
+                intent.putExtra("nickName",nickName);
                 startActivity(intent);//액티비티 이동
 
             }

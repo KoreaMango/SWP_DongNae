@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,7 +22,10 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+import static android.app.Activity.RESULT_OK;
+
 public class Work extends Fragment {
+    static final int REQ_ADD_CONTACT = 1 ;
     private View view;
 
     private RecyclerView recyclerView;
@@ -29,6 +33,8 @@ public class Work extends Fragment {
     private ArrayList<NoticeSub> arrayList;
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
+
+    int count = 0;
 
     public static Work newinstance() {
         Work work = new Work();
@@ -40,13 +46,13 @@ public class Work extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.work, container, false);
 
-
         recyclerView = (RecyclerView) view.findViewById(R.id.work_rv); //TODO 리사이클 뷰 아이디 연
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         arrayList = new ArrayList<>(); // 카테고리 액티비티 클래스의 객체를 담을 어레이 리스트
 
         String pos = getActivity().getIntent().getStringExtra("pos");
         String clubPos = getActivity().getIntent().getStringExtra("clubPos");
+        String nickName = getActivity().getIntent().getStringExtra("nickName");
 
 
         database = FirebaseDatabase.getInstance(); //파이어베이스 데이터 베이스 연동
@@ -55,6 +61,7 @@ public class Work extends Fragment {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                count = 0;
                 arrayList.clear(); //기존 배열리스트 초기화
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {  //반복문으로 데이터 리스트를 추출
                     Log.v("016",snapshot.getValue().toString() + "연동연동");
@@ -62,7 +69,7 @@ public class Work extends Fragment {
                     Log.v("011",noticeSub.getDate()+ "연동연동");
                     Log.v("011",noticeSub.getDes()+ "연동연동");
                     Log.v("011",noticeSub.getUser()+ "연동연동");
-
+                    count++;
                     arrayList.add(noticeSub);
 
                 }
@@ -80,6 +87,24 @@ public class Work extends Fragment {
         RecyclerDecoration spaceDecoration = new RecyclerDecoration(20);
         recyclerView.addItemDecoration(spaceDecoration);
         recyclerView.setAdapter(adapter); //리사이클러뷰에 어댑터 연결
+
+        /* 버튼을 클릭해 게시글을 작성하는 부분*/
+        Button writeButton;
+        writeButton = (Button) view.findViewById(R.id.writeBtn);
+        writeButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(view.getContext(),WriteActivity.class);
+                intent.putExtra("flag","work");
+                intent.putExtra("nickName",nickName);
+                startActivityForResult(intent,REQ_ADD_CONTACT);
+            }
+        });
+
+
+
+
+
         adapter.setOnItemClickListener(new OnNoticeItemClickListener() {
             @Override
             public void onItemClick(NoticeAdapter.NoticeViewHolder holder, View view, int position) {
@@ -90,6 +115,7 @@ public class Work extends Fragment {
                 intent.putExtra("type","협업");
                 intent.putExtra("noticePosition", noticePosition);
                 intent.putExtra("pos", pos);
+                intent.putExtra("nickName",nickName);
                 intent.putExtra("clubPos", clubPos);
 
                 startActivity(intent);//액티비티 이동
@@ -98,4 +124,35 @@ public class Work extends Fragment {
 
         return view;
     }
+    private void writeNewNotice(String des, String user, String date, String title) {
+        NoticeSub noticeSub = new NoticeSub(des,user,date,title);
+        String noticePosition = Integer.toString(count);
+        databaseReference.child(noticePosition).setValue(noticeSub);
+        count = 0;
+
+    }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQ_ADD_CONTACT) {
+            if (resultCode == RESULT_OK) {
+                String des;
+                String user;
+                String date;
+                String title;
+
+                title = data.getStringExtra("work1");
+                date =  data.getStringExtra("work2");
+                user =  data.getStringExtra("work3");
+                des =  data.getStringExtra("work4");
+                Log.v("9999",title + date + user + des);
+
+                if(!data.getStringExtra("work1").equals("fail")){
+                    writeNewNotice(des,user,date,title);
+                    Log.v("9999","함수 실행 성공");
+                }
+            }
+        }
+    }
+
 }
