@@ -20,9 +20,9 @@
             android:id="@+id/tv_clubName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:paddingTop="13dp"
-            android:paddingBottom="13dp"
+
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
             android:gravity="center_horizontal"
             android:text="기라성"
             android:textColor="@color/white"
@@ -30,7 +30,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:background="@drawable/brn_bg2"/>
+            android:background="@drawable/brn_bg4"/>
 
 
         <androidx.viewpager.widget.ViewPager

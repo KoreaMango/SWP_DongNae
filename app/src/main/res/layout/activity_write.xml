@@ -11,6 +11,7 @@
 
 
     <LinearLayout
+        android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginLeft="10dp"
@@ -39,9 +40,9 @@
                 android:textColor="@color/black"
                 android:textColorHint="#808080">
 
-            </EditText>
+                    </EditText>
 
-        </LinearLayout>
+                </LinearLayout>
 
 
         <LinearLayout
