@@ -39,9 +39,10 @@
             app:layout_constraintTop_toBottomOf="@+id/iv_profile" />
     </LinearLayout>
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         android:layout_gravity="center">
 
         <Button
@@ -49,23 +50,23 @@
             android:layout_width="272dp"
             android:layout_height="50dp"
             android:background="@drawable/brn_bg"
-            android:layout_marginTop="15dp"
-            android:layout_marginLeft="70dp"
             android:text="계속하기"
-            android:textColor="@color/lightGreen" />
+            android:layout_gravity="center"
+            android:textColor="@color/lightGreen"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+          />
 
         <Button
             android:id="@+id/logout_g"
             android:background="@drawable/brn_bg"
             android:layout_width="272dp"
             android:layout_height="50dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="190dp"
-            android:layout_marginLeft="70dp"
+            android:layout_gravity="center"
             android:textColor="@color/lightGreen"
             android:text="로그아웃" />
 
-    </RelativeLayout>
+    </LinearLayout>
 
 
 </LinearLayout>
