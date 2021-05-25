@@ -5,7 +5,6 @@ import android.content.ClipboardManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Debug;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -19,7 +18,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -269,7 +267,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                     logoutButton.setVisibility(View.GONE);
                     btn_google.setVisibility(View.VISIBLE);
                     BtnPopUp.setVisibility(View.VISIBLE);
-                    test.setVisibility(View.VISIBLE);
+                    test.setVisibility(View.GONE);
                     btn_next.setVisibility(View.GONE);
                     loginLogo.setVisibility(View.VISIBLE);
                     profile.setVisibility(View.GONE);
