@@ -84,7 +84,7 @@ public class GuideViewPagerAdapter extends PagerAdapter {
                 ind3.setImageResource(R.drawable.unselected);
 
                 Title.setText("동네");
-                desc.setText("동네는 동아리를 찾고자 하는 학생 , 동아리회원을 모집하고자 하는 모든 학생들에게 도움을 주고자 만든 어플입니다.");
+                desc.setText("동네는 동아리 네트워크를 줄인 말로 동아리를 찾고자 하는 학생 , 동아리회원을 모집하고자 하는 모든 학생들에게 도움을 주고자 만든 어플입니다.");
                 back.setVisibility(View.GONE);
                 next.setVisibility(View.VISIBLE);
                 break;
@@ -96,7 +96,7 @@ public class GuideViewPagerAdapter extends PagerAdapter {
                 ind3.setImageResource(R.drawable.unselected);
 
                 Title.setText("일반회원");
-                desc.setText("일반 회원은 동아리 찾기를 이용하여 자신이 원하는 동아리의 정보를 얻을수 있습니다.");
+                desc.setText("일반 회원은 자신이 원하는 동아리의 분과와 해당 동아리를 선택하여 궁금한점 ,활동 등 다양한 정보를 얻을수 있습니다. ");
                 back.setVisibility(View.VISIBLE);
                 next.setVisibility(View.VISIBLE);
                 break;
