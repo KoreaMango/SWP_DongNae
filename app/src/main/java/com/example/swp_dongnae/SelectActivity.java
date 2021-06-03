@@ -16,7 +16,7 @@ public class SelectActivity extends AppCompatActivity { // 동아리 찾기 or �
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select);
-
+        String nickName = getIntent().getStringExtra("nickName");
         btnSelectClub = (Button) findViewById(R.id.btnSelectClub);
         btnGuide = (Button) findViewById(R.id.btnGuide);
 
@@ -24,7 +24,7 @@ public class SelectActivity extends AppCompatActivity { // 동아리 찾기 or �
         btnSelectClub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String nickName = getIntent().getStringExtra("nickName");
+
                 Intent intent = new Intent(SelectActivity.this, CategoryActivity.class);
                 intent.putExtra("bdh","bdh");
                 intent.putExtra("nickName",nickName);
@@ -37,6 +37,8 @@ public class SelectActivity extends AppCompatActivity { // 동아리 찾기 or �
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(SelectActivity.this, Guide_Activity.class);
+                intent.putExtra("bdh","bdh");
+                intent.putExtra("nickName",nickName);
                 startActivity(intent);//액티비티 이동
             }
         });

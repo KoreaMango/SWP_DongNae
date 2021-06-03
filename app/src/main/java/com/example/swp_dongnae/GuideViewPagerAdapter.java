@@ -16,10 +16,12 @@ import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
 public class GuideViewPagerAdapter extends PagerAdapter {
     Context ctx;
+    String nickName;
 
 
-    public GuideViewPagerAdapter(Context ctx) {
+    public GuideViewPagerAdapter(Context ctx, String nickName) {
         this.ctx = ctx;
+        this.nickName = nickName;
     }
 
     @Override
@@ -55,6 +57,8 @@ public class GuideViewPagerAdapter extends PagerAdapter {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(ctx,SelectActivity.class);
+                intent.putExtra("bdh","bdh");
+                intent.putExtra("nickName",nickName);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
                 ctx.startActivity(intent);
 

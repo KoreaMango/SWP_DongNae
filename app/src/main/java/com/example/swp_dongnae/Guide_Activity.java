@@ -13,9 +13,9 @@ public class Guide_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.guide_slide);
-
+        String nickName = getIntent().getStringExtra("nickName");
         viewPager = findViewById(R.id.viewpager);
-        adapter = new GuideViewPagerAdapter(this);
+        adapter = new GuideViewPagerAdapter(this, nickName);
         viewPager.setAdapter(adapter);
     }
 }
