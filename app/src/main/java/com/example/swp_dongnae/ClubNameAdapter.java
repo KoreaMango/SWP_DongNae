@@ -15,9 +15,9 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 
 public class ClubNameAdapter extends RecyclerView.Adapter<ClubNameAdapter.ClubNameViewHolder> {
-    final ArrayList<ClubNameSub> arrayList;
+    final ArrayList<ClubNameSub> arrayList; // 어레이 리스트 변수
     final Context context;
-    OnNameItemClickListener listener;
+    OnNameItemClickListener listener; // 인터페이스 클래스 변수
 
 
     public ClubNameAdapter(ArrayList<ClubNameSub> arrayList, Context context) {
@@ -29,16 +29,16 @@ public class ClubNameAdapter extends RecyclerView.Adapter<ClubNameAdapter.ClubNa
     @Override
     public ClubNameViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_club_name_adapter, parent, false);
-        ClubNameViewHolder holder = new ClubNameViewHolder(view, this.listener);
+        ClubNameViewHolder holder = new ClubNameViewHolder(view, this.listener); // 뷰홀더 객체 생성
         return holder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull ClubNameViewHolder holder, int position) {
         Glide.with(holder.itemView)
-                .load(arrayList.get(position).getProfile())
-                .into(holder.iv_profile);
-        holder.tv_id.setText(arrayList.get(position).getId());
+                .load(arrayList.get(position).getProfile()) // 어레이 리스트의 프로필 가져오기
+                .into(holder.iv_profile); // 사진 세팅
+        holder.tv_id.setText(arrayList.get(position).getId()); // 동아리 이름 세팅
 
 
     }
@@ -62,13 +62,13 @@ public class ClubNameAdapter extends RecyclerView.Adapter<ClubNameAdapter.ClubNa
 
     public static class ClubNameViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView iv_profile;
-        TextView tv_id;
+        ImageView iv_profile; // xml 이미지 뷰
+        TextView tv_id; // xml 텍스트 뷰
 
         public ClubNameViewHolder(@NonNull View itemView, final OnNameItemClickListener listener) {
             super(itemView);
-            this.iv_profile = itemView.findViewById(R.id.iv_profile);
-            this.tv_id = itemView.findViewById(R.id.tv_id);
+            this.iv_profile = itemView.findViewById(R.id.iv_profile); // 이미지뷰 아이디로 찾기
+            this.tv_id = itemView.findViewById(R.id.tv_id); // 텍스트뷰 아이디로 찾기
 
 
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -84,28 +84,11 @@ public class ClubNameAdapter extends RecyclerView.Adapter<ClubNameAdapter.ClubNa
 
         }
 
-//        public void setItem(Person item) {
-//            nameText.setText(item.getName());
-//            mobileText.setText(item.getMobile());
-//        }
-
     }
-
-//    public void addItem(Person item) {
-//        items.add(item);
-//    }
-//
-//    public void setItems(ArrayList<Person> items) {
-//        this.items = items;
-//    }
 
     public ClubNameSub getItem(int position) {
         return arrayList.get(position);
-    }
-
-//    public void setItem(int position, Person item) {
-//        items.set(position, item);
-//    }
+    } // position 가져오는 메소드
 
 
 }

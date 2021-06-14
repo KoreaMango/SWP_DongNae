@@ -9,7 +9,7 @@ public class NoticeSub {
 
     public NoticeSub() {
     }
-    public NoticeSub(String mDes, String mUser, String mDate,String mTitle){
+    public NoticeSub(String mDes, String mUser, String mDate,String mTitle){ // qna, 협업 게시글 서브 객체
         this.des = mDes;
         this.user = mUser;
         this.date = mDate;

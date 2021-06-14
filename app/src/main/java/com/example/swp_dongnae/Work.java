@@ -24,8 +24,8 @@ import java.util.ArrayList;
 
 import static android.app.Activity.RESULT_OK;
 
-public class Work extends Fragment {
-    static final int REQ_ADD_CONTACT = 1 ;
+public class Work extends Fragment {  // 세부 동아리의 협업 액티비티
+    static final int REQ_ADD_CONTACT = 1 ; // 상수 선언 TRUE
     private View view;
 
     private RecyclerView recyclerView;
@@ -46,7 +46,7 @@ public class Work extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.work, container, false);
 
-        recyclerView = (RecyclerView) view.findViewById(R.id.work_rv); //TODO 리사이클 뷰 아이디 연
+        recyclerView = (RecyclerView) view.findViewById(R.id.work_rv);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         arrayList = new ArrayList<>(); // 카테고리 액티비티 클래스의 객체를 담을 어레이 리스트
 
@@ -84,7 +84,7 @@ public class Work extends Fragment {
         });
 
         adapter = new NoticeAdapter(arrayList, view.getContext());
-        RecyclerDecoration spaceDecoration = new RecyclerDecoration(20);
+        RecyclerDecoration spaceDecoration = new RecyclerDecoration(20); // 리사이클러뷰 간격
         recyclerView.addItemDecoration(spaceDecoration);
         recyclerView.setAdapter(adapter); //리사이클러뷰에 어댑터 연결
 
@@ -104,7 +104,7 @@ public class Work extends Fragment {
 
 
 
-
+        // 리사이클러뷰 클릭 이벤트
         adapter.setOnItemClickListener(new OnNoticeItemClickListener() {
             @Override
             public void onItemClick(NoticeAdapter.NoticeViewHolder holder, View view, int position) {
@@ -124,6 +124,8 @@ public class Work extends Fragment {
 
         return view;
     }
+
+    // 게시글 작성 메소드
     private void writeNewNotice(String des, String user, String date, String title) {
         NoticeSub noticeSub = new NoticeSub(des,user,date,title);
         String noticePosition = Integer.toString(count);

@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class NoticeAdapter extends RecyclerView.Adapter<NoticeAdapter.NoticeViewHolder> {
+public class NoticeAdapter extends RecyclerView.Adapter<NoticeAdapter.NoticeViewHolder> { // qna, 협업 게시글 어댑터 아래 내용은 다른 어댑터와 비슷
     final ArrayList<NoticeSub> arrayList;
     final Context context;
     OnNoticeItemClickListener listener;
@@ -83,28 +83,12 @@ public class NoticeAdapter extends RecyclerView.Adapter<NoticeAdapter.NoticeView
 
         }
 
-//        public void setItem(Person item) {
-//            nameText.setText(item.getName());
-//            mobileText.setText(item.getMobile());
-//        }
-
     }
 
-//    public void addItem(Person item) {
-//        items.add(item);
-//    }
-//
-//    public void setItems(ArrayList<Person> items) {
-//        this.items = items;
-//    }
 
     public NoticeSub getItem(int position) {
         return arrayList.get(position);
     }
-
-//    public void setItem(int position, Person item) {
-//        items.set(position, item);
-//    }
 
 
 }

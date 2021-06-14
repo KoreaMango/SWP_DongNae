@@ -1,6 +1,6 @@
 package com.example.swp_dongnae;
 
-public class SwitchTool {
+public class SwitchTool { // 선택된 포지션 값을 해당 분과로 변환 시키는 클래스
     public String switchClub(int i) {
 
         String item;

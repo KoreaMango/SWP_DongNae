@@ -24,8 +24,6 @@ public class WriteActivity extends AppCompatActivity {
     EditText et_description;
 
     String title;
-    String date;
-    String user;
     String description;
 
     @Override
