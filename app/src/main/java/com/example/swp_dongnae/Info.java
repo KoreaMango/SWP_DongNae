@@ -34,7 +34,7 @@ public class Info extends Fragment {
     private String category;
     private String email;
     private String tel;
-    private Button btn_call;
+    private Button btn_call; //전화 걸기 버튼 추가
 
     public static Info newinstance() {
         Info infoinfo = new Info();
@@ -91,17 +91,17 @@ public class Info extends Fragment {
             public void onCancelled(DatabaseError error) {
             }
         });
-        btn_call.setOnClickListener(new View.OnClickListener() {
+        btn_call.setOnClickListener(new View.OnClickListener() { //전화 걸기 버튼 클릭시
             @Override
             public void onClick(View v) {
-                String tell = tv_tell.getText().toString();
-                Intent intent1 = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"  + tell));
+                String tell = tv_tell.getText().toString(); //전화번호를 string 형태로 받아옴
+                Intent intent1 = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"  + tell)); //다이얼 화면으로 화면전화 후 받아온 전화번호 입력
                 startActivity(intent1);
                 }
             });
 
 
-        return view;
+        return view; //해당 뷰 출력
     }
 
 }

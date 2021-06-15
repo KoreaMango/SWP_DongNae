@@ -56,11 +56,12 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     private Button test;//TODO 민규 전용 테스트 버튼
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == REQ_SIGN_GOOGLE) {
-            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) { //메소드를 통해 호출된 Activity에서 저장한 결과를 돌려줌
+        super.onActivityResult(requestCode, resultCode, data); //resultCode 가 성공 값이 아니라면 리턴시킨다.
+        if(requestCode == REQ_SIGN_GOOGLE) { //구글에서 넘겨주는 로그인 결과값 받아오기
+            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data); //
                     if(result.isSuccess()){
+                        //이 값을 파이어베이스에 넘길수 있도록 만들어 주기
                        GoogleSignInAccount account = result.getSignInAccount();
                         resultLogin(account);  //어카운트는 로그인 정보를 담고있음
                     }
@@ -68,16 +69,16 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     }
 
     private void resultLogin(GoogleSignInAccount account) {
-        AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(),null);
+        AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(),null);//id 토큰값을 가져와 자격증명을 나타냄
         auth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){
+                        if(task.isSuccessful()){ //로그인 성공시
                             Toast.makeText(MainActivity.this,"로그인 성공",Toast.LENGTH_SHORT).show();
 
-                            Intent intent = new Intent(getApplicationContext(),ResultActivity.class);
-                            intent.putExtra("nickName",account.getDisplayName());
+                            Intent intent = new Intent(getApplicationContext(),ResultActivity.class);//로그인 성공시 보이는 인텐트 페이지= 결과 페이지
+                            intent.putExtra("nickName",account.getDisplayName()); //구글 계정에서 받아온 이름값 추가
                             intent.putExtra("photoUrl",String.valueOf(account.getPhotoUrl())); //특정 자료형을 스트링 형태로 변환
 
                             startActivity(intent);
@@ -98,9 +99,9 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
 
 
-        loginButton = findViewById(R.id.login);
-        logoutButton = findViewById(R.id.logout);
-        profile = findViewById(R.id.profile);
+        loginButton = findViewById(R.id.login); //로그인 버튼 추가
+        logoutButton = findViewById(R.id.logout); //로그아웃 버튼 추가
+        profile = findViewById(R.id.profile); //프로필값 매소드 찾기
         nickName = findViewById(R.id.nickname);
         profileImage = findViewById(R.id.profile);
         btn_next = findViewById(R.id.btn_next);
@@ -109,19 +110,19 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
         btn_next.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view) { //클릭시 메인화면에서 선택화면으로 이동
                 Intent intent = new Intent(MainActivity.this,SelectActivity.class);
                 startActivity(intent);//액티비티 이동
 
             }
         });
 
-        GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString((R.string.default_web_client_id)))
+        GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)  //로그인에 필요한 token 호출 매소드
+                .requestIdToken(getString((R.string.default_web_client_id))) // requestIdToken을 호출합니다.
                 .requestEmail()
                 .build();
 
-        googleApiClient = new GoogleApiClient.Builder(this)
+        googleApiClient = new GoogleApiClient.Builder(this) // 구글 클라이언트 API
                 .enableAutoManage(this,this)
                 .addApi(Auth.GOOGLE_SIGN_IN_API,googleSignInOptions)
                 .build();
