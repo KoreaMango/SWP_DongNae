@@ -9,6 +9,6 @@ public class KakaoApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        KakaoSdk.init(this,"38294660a3a4b4dda7d5a032233d78cb");
+        KakaoSdk.init(this,"38294660a3a4b4dda7d5a032233d78cb"); //카카오 sdk 키 생성
     }
 }

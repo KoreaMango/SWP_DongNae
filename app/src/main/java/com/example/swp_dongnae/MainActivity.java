@@ -46,13 +46,13 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     private static final int REQ_SIGN_GOOGLE = 100;// 구글 로그인 결과 코드
 
     private static final String TAG = "MainActivity";
-    private View loginButton, logoutButton;
-    private  ImageView profile;
-    private TextView nickName;
-    private ImageView profileImage;
+    private View loginButton, logoutButton; // 카카오 로그인, 로그아웃 버튼
+    private  ImageView profile; // 카카오 프로필
+    private TextView nickName; // 카카오 닉네임
+    private ImageView profileImage; // 카카오 프로필 이미지
     private Button BtnPopUp;
     private Button btn_next;
-    private ImageView loginLogo;
+    private ImageView loginLogo; // 메인화면 상단의 동네 로고
     private Button test;//TODO 민규 전용 테스트 버튼
 
     @Override
@@ -138,7 +138,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         });
 
 
-
+        //카카오 로그인 구현
         Function2<OAuthToken, Throwable, Unit> callback = new Function2<OAuthToken, Throwable, Unit>() {
             @Override
             public Unit invoke(OAuthToken oAuthToken, Throwable throwable) {
@@ -149,12 +149,12 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                     //TBD
                     Log.w(TAG, "invoke: " + throwable.getLocalizedMessage());
                 }
-                MainActivity.this.updateKakaoLoginUi();
+                MainActivity.this.updateKakaoLoginUi(); // 카카오 로그인 업데이트
                 return null;
             }
         };
 
-        loginButton.setOnClickListener(new View.OnClickListener() {
+        loginButton.setOnClickListener(new View.OnClickListener() { //로그인 버튼
             @Override
             public void onClick(View view) {
                 if(UserApiClient.getInstance().isKakaoTalkLoginAvailable(MainActivity.this)) {
@@ -167,7 +167,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             }
         });
 
-        logoutButton.setOnClickListener(new View.OnClickListener() {
+        logoutButton.setOnClickListener(new View.OnClickListener() { // 로그아웃 버튼
             @Override
             public void onClick(View v) {
                 UserApiClient.getInstance().logout(new Function1<Throwable, Unit>() {
@@ -221,7 +221,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     }
 
     Intent intent;
-    private void updateKakaoLoginUi() {
+    private void updateKakaoLoginUi() { // 카카오 로그인시 사용자 정보 불러오기
         UserApiClient.getInstance().me(new Function2<User, Throwable, Unit>() {
             @Override
             public Unit invoke(User user, Throwable throwable) {
@@ -234,9 +234,9 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                     Log.i(TAG,"invoke: age="+user.getKakaoAccount().getAgeRange());
 
 
-                    intent = new Intent(MainActivity.this, ResultActivity.class);
-                    intent.putExtra("nickName",user.getKakaoAccount().getProfile().getNickname());
-                    intent.putExtra("photoUrl", user.getKakaoAccount().getProfile().getProfileImageUrl());
+                    intent = new Intent(MainActivity.this, ResultActivity.class); // Result액티비티로 전환
+                    intent.putExtra("nickName",user.getKakaoAccount().getProfile().getNickname()); // nickname값 넘겨줌
+                    intent.putExtra("photoUrl", user.getKakaoAccount().getProfile().getProfileImageUrl()); // 카카오 프로필 넘겨줌
                     startActivity(intent);
 
                     loginButton.setVisibility(View.VISIBLE);
