@@ -16,7 +16,7 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 
 public class MediaAdapter extends RecyclerView.Adapter<MediaAdapter.ClubViewHolder> {
-    final ArrayList<Bs> arrayList;
+    final ArrayList<Bs> arrayList; // 어레이 리스트 변수
     final Context context;
 
     public MediaAdapter(ArrayList<Bs> arrayList, Context context) {
@@ -36,7 +36,7 @@ public class MediaAdapter extends RecyclerView.Adapter<MediaAdapter.ClubViewHold
     @Override
     public void onBindViewHolder(@NonNull ClubViewHolder holder, int position) {
         Bs media_url = arrayList.get(position);
-        Glide.with(holder.itemView)
+        Glide.with(holder.itemView) // 어레이 리스트의 이미지 가져오기
                 .load(media_url.getMedia())
                 .into(holder.tv_image);
     }
@@ -47,11 +47,11 @@ public class MediaAdapter extends RecyclerView.Adapter<MediaAdapter.ClubViewHold
     }
 
     public class ClubViewHolder extends RecyclerView.ViewHolder {
-        ImageView tv_image;
+        ImageView tv_image; // 이미지 뷰
 
         public ClubViewHolder(@NonNull View itemView) {
             super(itemView);
-            this.tv_image = itemView.findViewById(R.id.tv_image);
+            this.tv_image = itemView.findViewById(R.id.tv_image); // 이미지뷰 아이디로 찾기
         }
     }
 

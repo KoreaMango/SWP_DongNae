@@ -9,6 +9,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
 
+//동아리 페이지를 뷰페이저로 구현
 public class ViewClub extends AppCompatActivity {
 
     private FragmentPagerAdapter fragmentPagerAdapter;
@@ -29,6 +30,7 @@ public class ViewClub extends AppCompatActivity {
         viewPager.setAdapter(fragmentPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
 
+        //동아리 카테고리 페이지에서 값 가져온다.
         String clubName = getIntent().getStringExtra("club");
 
         tv_clubName = findViewById(R.id.tv_clubName);

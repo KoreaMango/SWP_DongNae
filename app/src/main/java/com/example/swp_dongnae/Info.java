@@ -28,6 +28,7 @@ import static com.example.swp_dongnae.R.id.btn_call;
 public class Info extends Fragment {
     private View view;
 
+    // 정보페이지에 필요한 정보들 변수로 선언
     private String activity;
     private String purpose;
     private String captain;
@@ -36,12 +37,14 @@ public class Info extends Fragment {
     private String tel;
     private Button btn_call; //전화 걸기 버튼 추가
 
+
     public static Info newinstance() {
         Info infoinfo = new Info();
         return infoinfo;
     }
 
 
+    //정보 페이지 화면 세팅
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -55,18 +58,20 @@ public class Info extends Fragment {
         TextView tv_tell = (TextView) view.findViewById(R.id.tv_tel);
         Button btn_call = (Button)view.findViewById(R.id.btn_call);
 
-            String pos = getActivity().getIntent().getStringExtra("pos");
+        //카테고리 액티비티 클래스에서 값 가져오기
+        String pos = getActivity().getIntent().getStringExtra("pos");
         String clubPos = getActivity().getIntent().getStringExtra("clubPos");
 
 
-
+        //파이어베이스 데이터 베이스 연동 및 db 테이블 연결화
         final DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("동아리").child(pos).child(clubPos);
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                Bs bs = new Bs(activity, purpose, captain, category, email, tel);
+                Bs bs = new Bs(activity, purpose, captain, category, email, tel); // bs 객체를 불러온다.
 
+                //bs객체에 데이터베이스값 설정
                 bs.setActivity(dataSnapshot.child("activity").getValue().toString());
                 bs.setPurpose(dataSnapshot.child("purpose").getValue().toString());
                 bs.setCaptain(dataSnapshot.child("captain").getValue().toString());
@@ -74,6 +79,7 @@ public class Info extends Fragment {
                 bs.setEmail(dataSnapshot.child("email").getValue().toString());
                 bs.setTel(dataSnapshot.child("tel").getValue().toString());
 
+                //xml에 데이터베이스 값 설정
                 tv_activity.setText(bs.getActivity());
                 tv_purpose.setText(bs.getPurpose());
                 tv_captain.setText(bs.getCaptain());

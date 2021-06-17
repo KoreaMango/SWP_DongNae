@@ -12,7 +12,7 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
         super(fm);
     }
 
-    //프래그먼트 처리 구현
+    //뷰페이저에서의 프래그먼트 화면 전환 처리 구현
     @NonNull
     @Override
     public Fragment getItem(int position) {

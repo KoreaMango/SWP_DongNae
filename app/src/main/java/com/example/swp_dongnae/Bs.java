@@ -1,6 +1,7 @@
 package com.example.swp_dongnae;
 
 public class Bs {
+    //파이어베이스에서 가져올 값들 담을 변수들 선언
     private String activity;
     private String purpose;
     private String captain;
@@ -11,10 +12,8 @@ public class Bs {
 
     public Bs(){  }
 
-    public Bs(String media) {
-        this.media = media;
-    }
 
+    //생성자
     public Bs(String activity, String purpose, String captain, String category, String email, String tel) {
         this.activity = activity;
         this.purpose = purpose;

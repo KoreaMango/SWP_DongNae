@@ -73,7 +73,7 @@ public class QnA extends Fragment { // 세부 동아리의 QNA 액티비티
                     arrayList.add(noticeSub);
 
                 }
-                adapter.notifyDataSetChanged();//리스트 저장 및 새로고침
+                adapter.notifyDataSetChanged(); //리스트 저장 및 새로고침
 
             }
 

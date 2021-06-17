@@ -29,7 +29,8 @@ public class ResultActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
 
-        Intent intent =getIntent(); //인텐트 작업
+        Intent intent =getIntent();
+        //메인화면에서 받아온 로그인 정보들(이미지, 이미지) 전달받기
         String nickName = intent.getStringExtra("nickName");
         String photoUrl = intent.getStringExtra("photoUrl");
 
@@ -61,6 +62,7 @@ public class ResultActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ResultActivity.this,SelectActivity.class);
+                //이름 정보 다음 액티비티로 전달
                 intent.putExtra("nickName",nickName);
                 startActivity(intent);//액티비티 이동
 
