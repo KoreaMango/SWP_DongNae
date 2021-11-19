@@ -6,7 +6,7 @@
 
 ### 구성 스킬
 
-android(JAVA)
+android(JAVA) ,firebase
 
 ### 프로젝트 내용
 
